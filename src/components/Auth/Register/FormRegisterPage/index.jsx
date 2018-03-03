@@ -18,14 +18,14 @@ class Register extends Component {
                 email: "",
                 password: "",
                 confirm: "",
-                login: ""
+                username: ""
             }
         };
     }
 
     registerUsername(e){
         var State = this.state.State;
-        this.state.register.login = e.target.value;
+        this.state.register.username = e.target.value;
         if(/^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/.test(e.target.value) ){
             State["loginState"] = "has-success";
         } else {
@@ -60,7 +60,7 @@ class Register extends Component {
         } else {
             State["passwordState"] = "has-danger";
         }
-        if(this.state.register.password === this.state.register.confirm){
+        if(this.state.register.password === this.state.register.confirm && this.state.register.confirm){
             State["confirmState"] = "has-success";
         } else {
             State["confirmState"] = "has-danger";
@@ -68,12 +68,13 @@ class Register extends Component {
 
         this.setState({State});
     }
+    
     registerConfirm(e){
         var State = this.state.State;
 
         this.state.register.confirm = e.target.value;
 
-        if(this.state.register.password === this.state.register.confirm){
+        if(this.state.register.password === this.state.register.confirm && this.state.register.confirm){
             State["confirmState"] = "has-success";
         } else {
             State["confirmState"] = "has-danger";
@@ -88,7 +89,7 @@ class Register extends Component {
 
         var userData = new Object();
         userData.email = this.state.register.email;
-        userData.login = this.state.register.login;
+        userData.username = this.state.register.username;
         userData.password = this.state.register.password;
 
         if(State["loginState"] !== "has-success")
@@ -110,7 +111,6 @@ class Register extends Component {
             axios.post('http://127.0.0.1:5000/api/auth/register/', userData).then(
                 (response) => {
                     console.log(response);
-                    
                 }
             )
             .catch(

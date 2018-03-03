@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // import FromLogin from '../FormLogErrors/index.jsx'
 
 import Input from './InputLog.jsx'
+import { LogIn } from '../../../../actions/user.js'
 
 class Login extends Component {
     constructor(props){
@@ -12,19 +15,31 @@ class Login extends Component {
         this.state = {
             State: {
                 passwordState: "",
-                loginState: ""
+                loginState: "",
+                emailState: "",
+                loginEmailState: ""
             },
             login: {
                 password: "",
-                login: ""
+                login: "",
+                email: ""
             },
             restore: {
-                email: "",
-                emailState: ""
+                email: ""
             },
             loginError: "",
-            passwordError: ""
+            passwordError: "",
+
+            user: "???"
         };
+    }
+
+    ss = () => {
+        this.setState({ user: this.msg() });
+    }
+
+    gs = () => {
+        this.ss();
     }
 
     loginUser(e){
@@ -35,6 +50,21 @@ class Login extends Component {
         } else {
             State["loginState"] = "has-danger";
         }
+        this.setState({State});
+    }
+
+    loginEmail(e){
+        var State = this.state.State;
+
+        this.state.login.email = e.target.value;
+
+        var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(emailRex.test(e.target.value)){
+            State["loginEmailState"] = "has-success";
+        } else {
+            State["loginEmailState"] = "has-danger";
+        }
+
         this.setState({State});
     }
 
@@ -49,75 +79,75 @@ class Login extends Component {
         this.setState({State});
     }
 
+    // componentDidMount() {
+    //     localStorage.setItem('JWT-Token', 'null');
+    // }
+
     loginSubmit = event => {
         event.preventDefault();
-
         var State = this.state.State;
         
         var userData = this.state.login;
 
         console.log(userData);
 
-        if(State["loginState"] !== "has-success")
-            State["loginState"] = "has-danger";
+        if(State["loginEmailState"] !== "has-success")
+            State["loginEmailState"] = "has-danger";
         if(State["passwordState"] !== "has-success")
             State["passwordState"] = "has-danger";
 
         this.setState({State});
 
-        if(State["loginState"] === "has-success" && State["passwordState"] === "has-success") {
+        if(State["loginEmailState"] === "has-success" && State["passwordState"] === "has-success") {
+            localStorage.setItem('JWT-Token', 'token-x');
             axios.post('http://127.0.0.1:5000/api/auth/', userData).then(
                 (response) => {
                     console.log(response);
-                    // if(true) { //response.data[0].username === login["login"]
-                    //     console.log("login is success");
-                    // }
-                    // else {
-                    //     console.log("login is failed");
-                    //     this.setState({ loginError: "login is failed" }, () => console.log(this.state.loginError));
-                    // }
-
-                    // if(true) { //response.data[0].email === login["password"]
-                    //     console.log("password is success");
-                    // }
-                    // else {
-                    //     console.log("password is failed");
-                    //     this.setState({ passwordError: "password is failed" }, () => console.log(this.state.passwordError));
-                    //     //console.log(errors["passwordError"]);
-                    // }
+                    
+                    this.props.LogIn();
+                    this.ss();
                 }
             )
             .catch(
                 (err) => {
-                    console.log(err);
+                    console.log("err");
                 }
             );
         }
     }
 
     restoreEmail(e){
-        var restore = this.state.restore;
-        restore["email"] = e.target.value;
+        var State = this.state.State;
+        this.state.restore.email = e.target.value;
         var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(emailRex.test(e.target.value)){
-            restore["emailState"] = "has-success";
+            State["emailState"] = "has-success";
         } else {
-            restore["emailState"] = "has-danger";
+            State["emailState"] = "has-danger";
         }
-        this.setState({restore});
+        this.setState({State});
     }
 
     restoreSubmit = event => {
         event.preventDefault();
-        var restore = this.state.login;
-        if(restore["emailState"] !== "has-success")
-            restore["emailState"] = "has-danger";
-        this.setState({restore});
-        if(restore["emailState"] === "has-success")
+        var State = this.state.State;
+        if(State["emailState"] !== "has-success")
+            State["emailState"] = "has-danger";
+        this.setState({State});
+        if(State["emailState"] === "has-success")
             console.log("all good");
     }
 
-    render(){
+    msg = () => {
+        console.log("THIS IS STATE OF USER:" + this.props.user)
+        if(!this.props.user)
+            return "FALSE";
+        else
+            return "SUCCESS"
+    }
+
+    render() {
+        // const { user } = this.props;
         return (
             <div className='content'>
                 <div className='container'>
@@ -127,7 +157,7 @@ class Login extends Component {
                                 <div className='form-group section-auth_form-headText'>
                                     <h2>Вход</h2>
                                 </div>
-                                <div className={"input-group " + this.state.State.loginState}>
+                                <div className={"input-group " + this.state.State.loginEmailState}>
                                     <div className="input-group-addon">
                                         <i className="now-ui-icons icons-form users_circle-08"></i>
                                     </div>
@@ -135,7 +165,7 @@ class Login extends Component {
                                         type="text" 
                                         placeholder="Username" 
                                         className="form-control"
-                                        onChange={(e) => this.loginUser(e)}
+                                        onChange={(e) => this.loginEmail(e)}
                                     />
                                 </div>
                                 <p>{this.state.loginError}</p>
@@ -151,7 +181,8 @@ class Login extends Component {
                                     />
                                     
                                 </div>
-                                <p>{this.state.passwordError}</p>
+                                <h1>{this.state.user}</h1>
+                                <button type="button" onClick={() => this.gs()}>get state</button>
                                 <button type='submit' className='btn-round btn btn-primary btn-lg btn-block btn-login'>Войти</button>
                                 <div className="pull-left">
                                     <h6>
@@ -175,7 +206,7 @@ class Login extends Component {
                                         </div>
                                         <div className='modal-body'>
                                             <form onSubmit={this.restoreSubmit}>
-                                                <div className={"form-group " + this.state.restore.emailState}>
+                                                <div className={"form-group " + this.state.State.emailState}>
                                                     <label>Email адрес</label>
                                                     <input type="email" 
                                                         className="form-control" 
@@ -196,8 +227,18 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
-        );        
+        );
     }
 };
 
-export default Login;
+function mapStateToProps(state){
+    return {
+        user: state.loginUser.isLogged
+    }
+};
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ LogIn: LogIn }, dispatch)
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

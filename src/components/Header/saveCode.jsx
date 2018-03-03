@@ -1,3 +1,17 @@
+// isLogged = true
+// post -> /logout/ -> isLogged = false
+
+
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         LogoutUser: () => {
+//             dispatch(LogOut());
+//         }
+//     }
+// }
+
+
+
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 import { connect } from 'react-redux';
@@ -6,13 +20,12 @@ import { bindActionCreators } from 'redux';
 import { MenuItem } from './MenuItem.jsx';
 import { LogOut } from '../../actions/user.js';
 
-const Header = (props) => {
+LogoutFunc = (props) => {
+    this.props.LogoutUser()
+    localStorage.setItem('JWT-Token', 'null');
+}
 
-    const LogoutFunc = () => {
-        props.LogoutUser()
-        localStorage.setItem('JWT-Token', 'null');
-    }
-
+function Header(props) {
     return (
         <nav className="navbar-transparent navbar-absolute navbar navbar-expand-lg">
             <div className="container">
@@ -34,7 +47,7 @@ const Header = (props) => {
                         {props.user && <MenuItem content="Profile" link="" icon="business_badge"  /> }
                         {props.user &&
                             <li className="nav-item">
-                                <a onClick={LogoutFunc} className="nav-link">
+                                <a onClick={() => this.LogoutFunc(props)} className="nav-link">
                                     <i className="now-ui-icons sport_user-run"></i>
                                     Logout
                                 </a>
@@ -47,7 +60,6 @@ const Header = (props) => {
     );
 }
 
-// Function method
 function mapDispatchToProps(dispatch) {
     return {
         LogoutUser: () => {
@@ -55,6 +67,10 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
+
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({ LogOut: LogOut }, dispatch)
+// };
 
 function mapStateToProps(state){
     return {
