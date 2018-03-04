@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 export const MenuItem = ({ link, icon, content }) => {
     return(
         <li className="nav-item">
-            <Link to={`/${link}`} className="nav-link">
+            <NavLink exact to={`/${link}`} className="nav-link">
                 <i className={`now-ui-icons ${icon}`}></i>
                 {content}
-            </Link>
+            </NavLink>
         </li>
     );
 }

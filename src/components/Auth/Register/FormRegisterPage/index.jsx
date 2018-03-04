@@ -104,10 +104,7 @@ class Register extends Component {
         this.setState({State});
 
         if(State["loginState"] === "has-success" && State["emailState"] === "has-success" 
-          && State["passwordState"] === "has-success" && State["confirmState"] === "has-success") {
-            console.log("ALL GOOD");
-            console.log(userData);
-          
+          && State["passwordState"] === "has-success" && State["confirmState"] === "has-success") {     
             axios.post('http://127.0.0.1:5000/api/auth/register/', userData).then(
                 (response) => {
                     console.log(response);
@@ -123,105 +120,107 @@ class Register extends Component {
 
     render() {
         return (
-            <div className='content'>
-                <div className="full-page-content">
-                    <div className="register-page">
-                        <div className="container-fluid">
-                            <div className="justify-content-center row">
-                                <div className="col-11 col-sm-10 col-md-6 col-lg-5">
-                                    <div className="info-area info-horizontal">
-                                        <div className="icon icon-info">
-                                            <i className="now-ui-icons media-2_sound-wave"></i>
+            <div className='justify-content-center'>
+                <div className='content'>
+                    <div className="full-page-content">
+                        <div className="register-page">
+                            <div className="container-fluid">
+                                <div className="justify-content-center row">
+                                    <div className="col-11 col-sm-10 col-md-6 col-lg-5">
+                                        <div className="info-area info-horizontal">
+                                            <div className="icon icon-info">
+                                                <i className="now-ui-icons media-2_sound-wave"></i>
+                                            </div>
+                                            <div className="description">
+                                                <h5 className="info-title">Marketing</h5>
+                                                <p className="description">We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
+                                            </div>
                                         </div>
-                                        <div className="description">
-                                            <h5 className="info-title">Marketing</h5>
-                                            <p className="description">We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
+                                        <div className="info-area info-horizontal">
+                                            <div className="icon icon-info">
+                                                <i className="now-ui-icons media-1_button-pause"></i>
+                                            </div>
+                                            <div className="description">
+                                                <h5 className="info-title">Fully Coded in React 16</h5>
+                                                <p className="description">We've developed the website with React 16, HTML5 and CSS3. The client has access to the code using GitHub.</p>
+                                            </div>
+                                        </div>
+                                        <div className="info-area info-horizontal">
+                                            <div className="icon icon-info">
+                                                <i className="now-ui-icons users_single-02"></i>
+                                            </div>
+                                            <div className="description">
+                                                <h5 className="info-title">Built Audience</h5>
+                                                <p className="description">There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="info-area info-horizontal">
-                                        <div className="icon icon-info">
-                                            <i className="now-ui-icons media-1_button-pause"></i>
-                                        </div>
-                                        <div className="description">
-                                            <h5 className="info-title">Fully Coded in React 16</h5>
-                                            <p className="description">We've developed the website with React 16, HTML5 and CSS3. The client has access to the code using GitHub.</p>
-                                        </div>
-                                    </div>
-                                    <div className="info-area info-horizontal">
-                                        <div className="icon icon-info">
-                                            <i className="now-ui-icons users_single-02"></i>
-                                        </div>
-                                        <div className="description">
-                                            <h5 className="info-title">Built Audience</h5>
-                                            <p className="description">There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-11 col-sm-7 col-md-8 col-lg-5 col-xl-4">
-                                    <div className="card-signup card">
-                                        <div className="text-center card-header">
-                                            <h4 className="card-title">Register</h4>
-                                        </div>
-                                        <div className="card-body">
-                                            <form onSubmit={this.registerSubmit}>
-                                                <div className={ "input-group "  + this.state.State.loginState  }>
-                                                    <div className="input-group-addon">
-                                                        <i className="now-ui-icons icons-form users_circle-08"></i>
+                                    <div className="col-11 col-sm-7 col-md-8 col-lg-5 col-xl-4">
+                                        <div className="card-signup card">
+                                            <div className="text-center card-header">
+                                                <h4 className="card-title">Register</h4>
+                                            </div>
+                                            <div className="card-body">
+                                                <form onSubmit={this.registerSubmit}>
+                                                    <div className={ "input-group "  + this.state.State.loginState  }>
+                                                        <div className="input-group-addon">
+                                                            <i className="now-ui-icons icons-form users_circle-08"></i>
+                                                        </div>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="Username"
+                                                            className="form-control"
+                                                            onChange={(e) => this.registerUsername(e)}
+                                                        />
                                                     </div>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="Username"
-                                                        className="form-control"
-                                                        onChange={(e) => this.registerUsername(e)}
-                                                    />
-                                                </div>
-                                                <div className={ "input-group " + this.state.State.emailState }>
-                                                    <div className="input-group-addon">
-                                                        <i className="now-ui-icons icons-form ui-1_email-85"></i>
+                                                    <div className={ "input-group " + this.state.State.emailState }>
+                                                        <div className="input-group-addon">
+                                                            <i className="now-ui-icons icons-form ui-1_email-85"></i>
+                                                        </div>
+                                                        <input 
+                                                            type="email"
+                                                            placeholder="Email"
+                                                            className="form-control"
+                                                            onChange={(e) => this.registerEmail(e)}
+                                                        />
                                                     </div>
-                                                    <input 
-                                                        type="email"
-                                                        placeholder="Email"
-                                                        className="form-control"
-                                                        onChange={(e) => this.registerEmail(e)}
-                                                    />
-                                                </div>
-                                                <div className={ "input-group " + this.state.State.passwordState }>
-                                                    <div className="input-group-addon">
-                                                        <i className="now-ui-icons icons-form ui-1_lock-circle-open"></i>
+                                                    <div className={ "input-group " + this.state.State.passwordState }>
+                                                        <div className="input-group-addon">
+                                                            <i className="now-ui-icons icons-form ui-1_lock-circle-open"></i>
+                                                        </div>
+                                                        <input 
+                                                            type="password"
+                                                            placeholder="Password"
+                                                            className="form-control"
+                                                            onChange={(e) => this.registerPassword(e)}
+                                                        />
                                                     </div>
-                                                    <input 
-                                                        type="password"
-                                                        placeholder="Password"
-                                                        className="form-control"
-                                                        onChange={(e) => this.registerPassword(e)}
-                                                    />
-                                                </div>
-                                                <div className={ "input-group " + this.state.State.confirmState }>
-                                                    <div className="input-group-addon">
-                                                        <i className="now-ui-icons icons-form ui-1_lock-circle-open"></i>
+                                                    <div className={ "input-group " + this.state.State.confirmState }>
+                                                        <div className="input-group-addon">
+                                                            <i className="now-ui-icons icons-form ui-1_lock-circle-open"></i>
+                                                        </div>
+                                                        <input 
+                                                            type="password" 
+                                                            placeholder="Confirm password" 
+                                                            className="form-control"
+                                                            onChange={(e) => this.registerConfirm(e)}
+                                                        />
                                                     </div>
-                                                    <input 
-                                                        type="password" 
-                                                        placeholder="Confirm password" 
-                                                        className="form-control"
-                                                        onChange={(e) => this.registerConfirm(e)}
-                                                    />
-                                                </div>
-                                                
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                                                        <input type="checkbox" className="form-check-input" value="on" />
-                                                        <span className="form-check-sign"></span>
-                                                        <div>I agree to the <a href="#something">terms and conditions</a>.</div>
-                                                    </label>
-                                                </div>
-                                                <div className="text-center card-footer">
-                                                    <button type='submit' className="btn-round btn btn-primary btn-lg">Get Started</button>
-                                                </div>
-                                            </form>
+                                                    
+                                                    <div className="form-check">
+                                                        <label className="form-check-label">
+                                                            <input type="checkbox" className="form-check-input" value="on" />
+                                                            <span className="form-check-sign"></span>
+                                                            <div>I agree to the <a href="#something">terms and conditions</a>.</div>
+                                                        </label>
+                                                    </div>
+                                                    <div className="text-center card-footer">
+                                                        <button type='submit' className="btn-round btn btn-primary btn-lg">Get Started</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>

@@ -1,51 +1,69 @@
 import React from 'react';
-import { Route, IndexRoute, Redirect } from 'react-router';
-import { connect } from 'react-redux';
+import { 
+    BrowserRouter as Router,
+    Route,
+    Redirect
+} from 'react-router-dom';
 
-import App from './App.jsx';
+import Layout from './Layout.jsx';
 import Home from './components/Home/index.jsx';
 import Login from './components/Auth/Login/FormLoginPage/index.jsx';
 import Register from './components/Auth/Register/FormRegisterPage/index.jsx';
-import ValidationForms from './components/ValidationForm.jsx';
+import ProtectedPage from './components/ProtectedPage.jsx';
+import Profile from './components/Profile.jsx';
 
-// import checkAuth from './checkAuth.jsx';
+const Rootrouter = () => {
 
-const checkAuth = () => {
-    const token = localStorage.getItem('JWT-Token');
-    if(!token)
-        return false;
-
-    try {
-        if(token == "null")
+    const checkAuth = () => {
+        const token = localStorage.getItem('JWToken');
+        if(token) {
+            return true;
+        } else {
             return false;
+        }
     }
-    catch(e) {
-        return false;
-    }
-    return true;
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route
+            {...rest}
+            render={props =>
+                checkAuth() ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                    to="/login"
+                    />
+                )
+            }
+        />
+    );
+
+    const IsAuth = ({ component: Component, ...rest }) => (
+        <Route
+            {...rest}
+            render={props =>
+                checkAuth() ? (
+                    <Redirect
+                    to="/profile"
+                    />
+                ) : (
+                    <Component {...props} />
+                )
+            }
+        />
+    );
+
+    return (
+        <Router>
+            <Layout>
+                <Route exact path='/' component={Home} />
+                <IsAuth path='/register' component={Register} />
+                <IsAuth path='/login' component={Login} />
+                <PrivateRoute path='/protected' component={ProtectedPage} />
+                <PrivateRoute path='/profile' component={Profile} />
+            </Layout>
+        </Router>
+    );
 }
 
-const AuthRouter = ({ component: Component }) => (
-    <Route
-        render={props => 
-            checkAuth() ? (
-                    <Component {...props} />
-            ) : (
-                <Redirect 
-                    to={{
-                        pathname: '/login'
-                    }}
-                />
-            )
-        }
-    />
-);
-
-export default (
-    <Route path='/' component={App}>
-        <IndexRoute component={Home} />
-        <Route path='register' component={Register} />
-        <Route path='login' component={Login} />
-        <AuthRouter path='validation' component={ValidationForms} />
-    </Route>
-);
+export default Rootrouter;

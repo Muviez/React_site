@@ -14,7 +14,6 @@ body {
   background-position: bottom;
 }
 
-
 .layout .header {
   background-color: transparent;
   display: -webkit-box;
@@ -213,7 +212,11 @@ body {
   border-radius: 1.3rem !important;
 }
 
-
+.active-link {
+  background-color: hsla(0,0%,100%,.2);
+  border-radius: .1875rem;
+  color: #fff;
+}
 
 
 

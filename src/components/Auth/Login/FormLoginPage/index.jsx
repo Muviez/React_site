@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 
 import Input from './InputLog.jsx'
 import { LogIn } from '../../../../actions/user.js'
+import { login } from '../../../../actions/user.js'
 
 class Login extends Component {
     constructor(props){
@@ -79,17 +80,13 @@ class Login extends Component {
         this.setState({State});
     }
 
-    // componentDidMount() {
-    //     localStorage.setItem('JWT-Token', 'null');
-    // }
-
     loginSubmit = event => {
         event.preventDefault();
         var State = this.state.State;
         
         var userData = this.state.login;
 
-        console.log(userData);
+        // console.log(userData);
 
         if(State["loginEmailState"] !== "has-success")
             State["loginEmailState"] = "has-danger";
@@ -99,20 +96,10 @@ class Login extends Component {
         this.setState({State});
 
         if(State["loginEmailState"] === "has-success" && State["passwordState"] === "has-success") {
-            localStorage.setItem('JWT-Token', 'token-x');
-            axios.post('http://127.0.0.1:5000/api/auth/', userData).then(
-                (response) => {
-                    console.log(response);
-                    
-                    this.props.LogIn();
-                    this.ss();
-                }
-            )
-            .catch(
-                (err) => {
-                    console.log("err");
-                }
-            );
+            login(userData);
+            this.props.LogIn();
+            this.ss();
+            this.context.router.history.push('/')
         }
     }
 
@@ -230,6 +217,10 @@ class Login extends Component {
         );
     }
 };
+
+Login.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
 
 function mapStateToProps(state){
     return {

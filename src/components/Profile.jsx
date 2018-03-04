@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function Profile() {
     return (
         <div className='content'>
             <div className='container'>
                 <div className='row justify-content-center align-items-center'>
                     <div className='content_button'>
-                        <Link to='/register' className='btn btn-primary'>Регистрация</Link>
-                        <Link to='/login' className='btn btn-primary'>Войти</Link>
+                        <h1>PROFILE PAGE</h1>
                     </div>
                 </div>
             </div>
@@ -18,4 +17,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Profile;
