@@ -16,7 +16,6 @@ import Rootrouter from './routes.jsx'
 if(localStorage.JWToken) {
     setAuthorizationToken(localStorage.JWToken);
     store.dispatch(LogIn());
-    console.log(store.getState().loginUser.isLogged)
 }
 
 render(

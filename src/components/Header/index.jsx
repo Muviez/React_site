@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { MenuItem } from './MenuItem.jsx';
-import { LogOut } from '../../actions/user.js';
-import { logout } from '../../actions/user.js';
+import { LogOut, logout } from '../../actions/user.js';
 
 class Header extends Component {
     render(props) {

@@ -105,7 +105,7 @@ class Register extends Component {
 
         if(State["loginState"] === "has-success" && State["emailState"] === "has-success" 
           && State["passwordState"] === "has-success" && State["confirmState"] === "has-success") {     
-            axios.post('http://127.0.0.1:5000/api/auth/register/', userData).then(
+            axios.post('http://localhost:5000/api/auth/register/', userData).then(
                 (response) => {
                     console.log(response);
                 }

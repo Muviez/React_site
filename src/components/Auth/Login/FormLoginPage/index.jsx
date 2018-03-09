@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // import FromLogin from '../FormLogErrors/index.jsx'
-
-import Input from './InputLog.jsx'
-import { LogIn } from '../../../../actions/user.js'
-import { login } from '../../../../actions/user.js'
+import Restore from '../../Restore/FormRestorePage/index.jsx';
+import Input from './InputLog.jsx';
+import { LogIn, login } from '../../../../actions/user.js';
+import { setAuthorizationToken } from "../../../../utils/setAuthorizationToken.js";
 
 class Login extends Component {
     constructor(props){
@@ -17,15 +17,11 @@ class Login extends Component {
             State: {
                 passwordState: "",
                 loginState: "",
-                emailState: "",
                 loginEmailState: ""
             },
             login: {
                 password: "",
                 login: "",
-                email: ""
-            },
-            restore: {
                 email: ""
             },
             loginError: "",
@@ -94,35 +90,21 @@ class Login extends Component {
             State["passwordState"] = "has-danger";
 
         this.setState({State});
-
+        console.log(userData)
         if(State["loginEmailState"] === "has-success" && State["passwordState"] === "has-success") {
-            login(userData);
-            this.props.LogIn();
-            this.ss();
-            this.context.router.history.push('/')
+            login(userData)
+            .then(res => {
+                localStorage.setItem('JWToken', res.data.token);
+                setAuthorizationToken(res.data.token);
+                this.props.LogIn();
+                this.ss();
+                this.context.router.history.push('/');
+            })
+            .catch(err => {
+                console.log("ERROR_LOGIN: " + err);
+            })
+            
         }
-    }
-
-    restoreEmail(e){
-        var State = this.state.State;
-        this.state.restore.email = e.target.value;
-        var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(emailRex.test(e.target.value)){
-            State["emailState"] = "has-success";
-        } else {
-            State["emailState"] = "has-danger";
-        }
-        this.setState({State});
-    }
-
-    restoreSubmit = event => {
-        event.preventDefault();
-        var State = this.state.State;
-        if(State["emailState"] !== "has-success")
-            State["emailState"] = "has-danger";
-        this.setState({State});
-        if(State["emailState"] === "has-success")
-            console.log("all good");
     }
 
     msg = () => {
@@ -149,8 +131,8 @@ class Login extends Component {
                                         <i className="now-ui-icons icons-form users_circle-08"></i>
                                     </div>
                                     <input 
-                                        type="text" 
-                                        placeholder="Username" 
+                                        type="email" 
+                                        placeholder="Email" 
                                         className="form-control"
                                         onChange={(e) => this.loginEmail(e)}
                                     />
@@ -178,38 +160,11 @@ class Login extends Component {
                                 </div>
                                 <div className="pull-right">
                                     <h6>
-                                        <a href='#' className="link footer-link" data-toggle="modal" data-target="#exampleModal">Need Help?</a>
+                                        <a href='#' className="link footer-link" data-toggle="modal" data-target="#exampleModal">Forgot password?</a>
                                     </h6>
                                 </div>
                             </form>
-                            <div className='modal fade' id='exampleModal' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                                <div className='modal-dialog' role='document'>
-                                    <div className='modal-content'>
-                                        <div className='modal-header'>
-                                            <h5 className='modal-title'>Восстановить пароль</h5>
-                                            <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
-                                            <span aria-hidden='true'>&times;</span>
-                                            </button>
-                                        </div>
-                                        <div className='modal-body'>
-                                            <form onSubmit={this.restoreSubmit}>
-                                                <div className={"form-group " + this.state.State.emailState}>
-                                                    <label>Email адрес</label>
-                                                    <input type="email" 
-                                                        className="form-control" 
-                                                        placeholder="Введите Email"
-                                                        onChange={(e) => this.restoreEmail(e)}
-                                                    />
-                                                </div>
-                                                <button type='submit' className='btn btn-primary confPass'>Отправить</button>
-                                            </form>
-                                        </div>
-                                        <div className='modal-footer'>
-                                            <button type='button' className='btn btn-secondary' data-dismiss='modal'>Закрыть</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Restore />
                         </div>
                     </div>
                 </div>
