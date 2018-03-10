@@ -21,7 +21,6 @@ class Login extends Component {
             },
             login: {
                 password: "",
-                login: "",
                 email: ""
             },
             loginError: "",
@@ -78,19 +77,13 @@ class Login extends Component {
 
     loginSubmit = event => {
         event.preventDefault();
-        var State = this.state.State;
-        
+        var State = this.state.State;   
         var userData = this.state.login;
-
-        // console.log(userData);
-
         if(State["loginEmailState"] !== "has-success")
             State["loginEmailState"] = "has-danger";
         if(State["passwordState"] !== "has-success")
             State["passwordState"] = "has-danger";
-
         this.setState({State});
-        console.log(userData)
         if(State["loginEmailState"] === "has-success" && State["passwordState"] === "has-success") {
             login(userData)
             .then(res => {
@@ -103,7 +96,6 @@ class Login extends Component {
             .catch(err => {
                 console.log("ERROR_LOGIN: " + err);
             })
-            
         }
     }
 

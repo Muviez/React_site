@@ -108,6 +108,7 @@ class Register extends Component {
             axios.post('http://localhost:5000/api/auth/register/', userData).then(
                 (response) => {
                     console.log(response);
+                    //this.notify();
                 }
             )
             .catch(
@@ -117,6 +118,24 @@ class Register extends Component {
             )
         }
     }
+
+    // notify(){
+    //     let options = {};
+    //     options = {
+    //         place: "tc",
+    //         message: (
+    //             <div>
+    //                 <div>
+    //                     Welcome to <b>LENDLEASE</b> - registration is successful.
+    //                 </div>
+    //             </div>
+    //         ),
+    //         type: 'success',
+    //         icon: "now-ui-icons ui-1_bell-53",
+    //         autoDismiss: 7
+    //     }
+    //     this.refs.notificationAlert.notificationAlert(options);
+    // }
 
     render() {
         return (

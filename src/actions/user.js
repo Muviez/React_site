@@ -1,7 +1,7 @@
 import axios from "axios";
 import {setAuthorizationToken} from '../utils/setAuthorizationToken.js';
 
-export function login(data) {
+export const login = (data) => {
     return axios.post('http://localhost:5000/api/auth/', data)
 }
 
@@ -13,7 +13,7 @@ export const LogIn = () => {
 }
 
 
-export function logout() {
+export const logout = () => {
     localStorage.removeItem('JWToken');
     setAuthorizationToken(false);
 }
@@ -28,4 +28,8 @@ export const LogOut = () => {
 
 export const restore = data => {
     return axios.post('http://localhost:5000/api/auth/restore/', data)
+}
+
+export const resetpassword = data => {
+    return axios.post('http://localhost:5000/api/auth/reset/', data)
 }
