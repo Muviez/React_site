@@ -12,7 +12,7 @@ class Header extends Component {
     const LogoutFunc = () => {
         this.props.LogoutUser()
         logout();
-        this.context.router.history.push('/')
+        this.context.router.history.push('/login')
     }
     const isAuthenticated = this.props.user;
 

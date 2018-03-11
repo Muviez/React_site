@@ -39,9 +39,6 @@ class Restore extends React.Component {
             .then(res => {
                 console.log(res);
                 this.notify();
-                setTimeout(() => {
-                    this.context.router.history.push('/login');
-                }, 3500);
             })
             .catch(err => {
                 console.log("RESTORE ERR = " + res.data);
