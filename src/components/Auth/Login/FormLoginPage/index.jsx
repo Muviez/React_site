@@ -4,9 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// import FromLogin from '../FormLogErrors/index.jsx'
 import Restore from '../../Restore/FormRestorePage/index.jsx';
-import Input from './InputLog.jsx';
 import { LogIn, login } from '../../../../actions/user.js';
 import { setAuthorizationToken } from "../../../../utils/setAuthorizationToken.js";
 
@@ -25,60 +23,44 @@ class Login extends Component {
             },
             loginError: "",
             passwordError: "",
-
-            user: "???"
         };
     }
 
-    ss = () => {
-        this.setState({ user: this.msg() });
-    }
-
-    gs = () => {
-        this.ss();
-    }
-
     loginUser(e){
-        var State = this.state.State;
+        let State = this.state.State;
         this.state.login.login = e.target.value;
-        if(/^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$/.test(e.target.value) ){
+        if(/^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$/.test(e.target.value) )
             State["loginState"] = "has-success";
-        } else {
+        else
             State["loginState"] = "has-danger";
-        }
         this.setState({State});
     }
 
     loginEmail(e){
-        var State = this.state.State;
-
+        let State = this.state.State;
         this.state.login.email = e.target.value;
-
-        var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(emailRex.test(e.target.value)){
+        let emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(emailRex.test(e.target.value))
             State["loginEmailState"] = "has-success";
-        } else {
+        else 
             State["loginEmailState"] = "has-danger";
-        }
-
         this.setState({State});
     }
 
     loginPassword(e){
-        var State = this.state.State;
+        let State = this.state.State;
         this.state.login.password = e.target.value;
-        if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(e.target.value)){
+        if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(e.target.value))
             State["passwordState"] = "has-success";
-        } else {
+        else
             State["passwordState"] = "has-danger";
-        }
         this.setState({State});
     }
 
     loginSubmit = event => {
         event.preventDefault();
-        var State = this.state.State;   
-        var userData = this.state.login;
+        let State = this.state.State;   
+        let userData = this.state.login;
         if(State["loginEmailState"] !== "has-success")
             State["loginEmailState"] = "has-danger";
         if(State["passwordState"] !== "has-success")
@@ -90,7 +72,6 @@ class Login extends Component {
                 localStorage.setItem('JWToken', res.data.token);
                 setAuthorizationToken(res.data.token);
                 this.props.LogIn();
-                this.ss();
                 this.context.router.history.push('/');
             })
             .catch(err => {
@@ -99,16 +80,7 @@ class Login extends Component {
         }
     }
 
-    msg = () => {
-        console.log("THIS IS STATE OF USER:" + this.props.user)
-        if(!this.props.user)
-            return "FALSE";
-        else
-            return "SUCCESS"
-    }
-
     render() {
-        // const { user } = this.props;
         return (
             <div className='content'>
                 <div className='container'>
@@ -142,8 +114,6 @@ class Login extends Component {
                                     />
                                     
                                 </div>
-                                <h1>{this.state.user}</h1>
-                                <button type="button" onClick={() => this.gs()}>get state</button>
                                 <button type='submit' className='btn-round btn btn-primary btn-lg btn-block btn-login'>Войти</button>
                                 <div className="pull-left">
                                     <h6>

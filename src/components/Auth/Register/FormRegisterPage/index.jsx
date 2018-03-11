@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import NotificationAlert from 'react-notification-alert';
 
-import Input from './InputReg.jsx'
-import {registerEmail} from '../../../ValidationForm.jsx';
+import { registerEmail } from '../../../ValidationForm.jsx';
 
 class Register extends Component {
     constructor(props){
@@ -24,70 +24,56 @@ class Register extends Component {
     }
 
     registerUsername(e){
-        var State = this.state.State;
+        let State = this.state.State;
         this.state.register.username = e.target.value;
-        if(/^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/.test(e.target.value) ){
+        if(/^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/.test(e.target.value) )
             State["loginState"] = "has-success";
-        } else {
+        else
             State["loginState"] = "has-danger";
-        }
         this.setState({State});
     }
 
     registerEmail(e){
-        var State = this.state.State;
-
+        let State = this.state.State;
         this.state.register.email = e.target.value;
-
-        var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(emailRex.test(e.target.value)){
+        let emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(emailRex.test(e.target.value))
             State["emailState"] = "has-success";
-        } else {
+        else
             State["emailState"] = "has-danger";
-        }
-
         this.setState({State});
     }
 
     registerPassword(e){
-
-        var State = this.state.State;
-
+        let State = this.state.State;
         this.state.register.password = e.target.value;
-
-        if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(e.target.value)) {
+        if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(e.target.value)) 
             State["passwordState"] = "has-success";
-        } else {
+        else
             State["passwordState"] = "has-danger";
-        }
-        if(this.state.register.password === this.state.register.confirm && this.state.register.confirm){
+        if(this.state.register.password === this.state.register.confirm && this.state.register.confirm)
             State["confirmState"] = "has-success";
-        } else {
+        else
             State["confirmState"] = "has-danger";
-        }
-
         this.setState({State});
     }
     
     registerConfirm(e){
-        var State = this.state.State;
-
+        let State = this.state.State;
         this.state.register.confirm = e.target.value;
-
-        if(this.state.register.password === this.state.register.confirm && this.state.register.confirm){
+        if(this.state.register.password === this.state.register.confirm && this.state.register.confirm)
             State["confirmState"] = "has-success";
-        } else {
+        else 
             State["confirmState"] = "has-danger";
-        }
         this.setState({State});
     }
     
     registerSubmit = event => {
         event.preventDefault();
+        
+        let State = this.state.State;
 
-        var State = this.state.State;
-
-        var userData = new Object();
+        let userData = new Object();
         userData.email = this.state.register.email;
         userData.username = this.state.register.username;
         userData.password = this.state.register.password;
@@ -100,15 +86,19 @@ class Register extends Component {
             State["passwordState"] = "has-danger";
         if(State["confirmState"] !== "has-success")
             State["confirmState"] = "has-danger";
-
         this.setState({State});
-
         if(State["loginState"] === "has-success" && State["emailState"] === "has-success" 
           && State["passwordState"] === "has-success" && State["confirmState"] === "has-success") {     
             axios.post('http://localhost:5000/api/auth/register/', userData).then(
                 (response) => {
                     console.log(response);
-                    //this.notify();
+                    this.notify();
+                    document.formReg.reset();
+                    State["loginState"] = " ";
+                    State["emailState"] = " ";
+                    State["passwordState"] = " ";
+                    State["confirmState"] = " ";
+                    this.setState({State});
                 }
             )
             .catch(
@@ -119,28 +109,29 @@ class Register extends Component {
         }
     }
 
-    // notify(){
-    //     let options = {};
-    //     options = {
-    //         place: "tc",
-    //         message: (
-    //             <div>
-    //                 <div>
-    //                     Welcome to <b>LENDLEASE</b> - registration is successful.
-    //                 </div>
-    //             </div>
-    //         ),
-    //         type: 'success',
-    //         icon: "now-ui-icons ui-1_bell-53",
-    //         autoDismiss: 7
-    //     }
-    //     this.refs.notificationAlert.notificationAlert(options);
-    // }
+    notify(){
+        let options = {};
+        options = {
+            place: "tc",
+            message: (
+                <div>
+                    <div>
+                        Welcome to <b>LENDLEASE</b> - registration is successful.
+                    </div>
+                </div>
+            ),
+            type: 'success',
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 3
+        }
+        this.refs.notificationAlert.notificationAlert(options);
+    }
 
     render() {
         return (
             <div className='justify-content-center'>
                 <div className='content'>
+                    <NotificationAlert ref="notificationAlert"/>
                     <div className="full-page-content">
                         <div className="register-page">
                             <div className="container-fluid">
@@ -180,7 +171,7 @@ class Register extends Component {
                                                 <h4 className="card-title">Register</h4>
                                             </div>
                                             <div className="card-body">
-                                                <form onSubmit={this.registerSubmit}>
+                                                <form name="formReg" onSubmit={this.registerSubmit}>
                                                     <div className={ "input-group "  + this.state.State.loginState  }>
                                                         <div className="input-group-addon">
                                                             <i className="now-ui-icons icons-form users_circle-08"></i>

@@ -1,4 +1,5 @@
 import React from 'react';
+import NotificationAlert from 'react-notification-alert';
 
 import { restore } from "../../../../actions/user.js";
 
@@ -37,6 +38,10 @@ class Restore extends React.Component {
             restore(userData)
             .then(res => {
                 console.log(res);
+                this.notify();
+                setTimeout(() => {
+                    this.context.router.history.push('/login');
+                }, 3500);
             })
             .catch(err => {
                 console.log("RESTORE ERR = " + res.data);
@@ -44,15 +49,34 @@ class Restore extends React.Component {
         }
     }
 
+    notify(){
+        let options = {};
+        options = {
+            place: "tc",
+            message: (
+                <div>
+                    <div>
+                        The letter has been successfully sent to your e-mail
+                    </div>
+                </div>
+            ),
+            type: 'success',
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 5
+        }
+        this.refs.notificationAlert.notificationAlert(options);
+    }
+
     render() {
         return(
             <div className='modal fade' id='exampleModal' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <NotificationAlert ref="notificationAlert"/>
                 <div className='modal-dialog' role='document'>
                     <div className='modal-content'>
                         <div className='modal-header'>
                             <h5 className='modal-title'>Восстановить пароль</h5>
                             <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
+                                <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>
                         <div className='modal-body'>
@@ -76,6 +100,10 @@ class Restore extends React.Component {
             </div>
         )
     }
+}
+
+Restore.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 
 export default Restore;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import NotificationAlert from 'react-notification-alert';
 
 import { resetpassword } from "../../../../actions/user.js";
 
@@ -61,7 +62,11 @@ class ResetPassword extends Component {
             resetpassword(userData)
             .then(res => {
                 console.log(res);
-                this.context.router.history.push('/login');
+                this.notify();
+                setTimeout(() => {
+                    this.context.router.history.push('/login');
+                }, 3500);
+                
             })
             .catch(err => {
                 console.log(err);
@@ -70,9 +75,28 @@ class ResetPassword extends Component {
         }
     }
 
+    notify(){
+        let options = {};
+        options = {
+            place: "tc",
+            message: (
+                <div>
+                    <div>
+                        Password was successfully changed!
+                    </div>
+                </div>
+            ),
+            type: 'success',
+            icon: "now-ui-icons ui-1_bell-53",
+            autoDismiss: 5
+        }
+        this.refs.notificationAlert.notificationAlert(options);
+    }
+
     render() {
         return (
             <div className='content'>
+                <NotificationAlert ref="notificationAlert"/>
                 <div className='container'>
                     <div className='row justify-content-center'>
                         <div className='col-md-7 col-lg-5 col-sm-9 col-10'>
