@@ -16,14 +16,13 @@ class Login extends Component {
             State: {
                 passwordState: "",
                 loginState: "",
-                loginEmailState: ""
+                loginEmailState: "",
+                error: ""
             },
             login: {
                 password: "",
                 email: ""
-            },
-            loginError: "",
-            passwordError: "",
+            }
         };
     }
 
@@ -66,6 +65,7 @@ class Login extends Component {
             State["loginEmailState"] = "has-danger";
         if(State["passwordState"] !== "has-success")
             State["passwordState"] = "has-danger";
+        State["error"] = " ";
         this.setState({State});
         if(State["loginEmailState"] === "has-success" && State["passwordState"] === "has-success") {
             login(userData)
@@ -78,7 +78,9 @@ class Login extends Component {
                 this.context.router.history.push('/');
             })
             .catch(err => {
-                console.log("ERROR_LOGIN: " + err);
+                if(err.response.data.message === "INVALID_CREDENTIALS")
+                    State["error"] = "Неверный логин или пароль";
+                this.setState({State});
             })
         }
     }
@@ -104,7 +106,6 @@ class Login extends Component {
                                         onChange={(e) => this.loginEmail(e)}
                                     />
                                 </div>
-                                <p>{this.state.loginError}</p>
                                 <div className={"input-group " + this.state.State.passwordState}>
                                     <div className="input-group-addon">
                                         <i className="now-ui-icons ui-1_lock-circle-open"></i>
@@ -115,8 +116,8 @@ class Login extends Component {
                                         className="form-control"
                                         onChange={(e) => this.loginPassword(e)}
                                     />
-                                    
                                 </div>
+                                <h6 className="text-danger">{this.state.State.error}</h6>
                                 <button type='submit' className='btn-round btn btn-primary btn-lg btn-block btn-login'>Войти</button>
                                 <div className="pull-left">
                                     <h6>

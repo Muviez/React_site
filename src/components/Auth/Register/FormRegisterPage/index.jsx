@@ -12,14 +12,16 @@ class Register extends Component {
                 emailState: "",
                 passwordState: "",
                 confirmState: "",
-                loginState: ""
+                loginState: "",
+                error: ""
             },
             register: {
                 email: "",
                 password: "",
                 confirm: "",
                 username: ""
-            }
+            },
+            
         };
     }
 
@@ -86,6 +88,7 @@ class Register extends Component {
             State["passwordState"] = "has-danger";
         if(State["confirmState"] !== "has-success")
             State["confirmState"] = "has-danger";
+        State["error"] = "";   
         this.setState({State});
         if(State["loginState"] === "has-success" && State["emailState"] === "has-success" 
           && State["passwordState"] === "has-success" && State["confirmState"] === "has-success") {     
@@ -103,7 +106,8 @@ class Register extends Component {
             )
             .catch(
                 (err) => {
-                    console.log(err);
+                    State["error"] = err.response.data.message;
+                    this.setState({State});
                 }
             )
         }
@@ -224,6 +228,7 @@ class Register extends Component {
                                                             <div>I agree to the <a href="#something">terms and conditions</a>.</div>
                                                         </label>
                                                     </div>
+                                                    <h6 className="text-justify">{this.state.State.error}</h6>
                                                     <div className="text-center card-footer">
                                                         <button type='submit' className="btn-round btn btn-primary btn-lg">Get Started</button>
                                                     </div>

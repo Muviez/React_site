@@ -12,6 +12,8 @@ class Header extends Component {
     const LogoutFunc = () => {
         this.props.LogoutUser()
         logout();
+        localStorage.removeItem("avatar");
+        localStorage.removeItem("bg");
         this.context.router.history.push('/login')
     }
     const isAuthenticated = this.props.user;
