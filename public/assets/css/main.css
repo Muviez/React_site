@@ -211,6 +211,7 @@ body {
 
 .card {
   border-radius: 1.3rem !important;
+  display: flex !important;
 }
 
 .active-link {

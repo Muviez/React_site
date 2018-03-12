@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import Restore from '../../Restore/FormRestorePage/index.jsx';
 import { LogIn, login } from '../../../../actions/user.js';
 import { setAuthorizationToken } from "../../../../utils/setAuthorizationToken.js";
+import { randomAvatar, randomBg } from "../../../../utils/generateRandomImg.js";
 
 class Login extends Component {
     constructor(props){
@@ -70,6 +71,8 @@ class Login extends Component {
             login(userData)
             .then(res => {
                 localStorage.setItem('JWToken', res.data.token);
+                localStorage.setItem('avatar', randomAvatar())
+                localStorage.setItem('bg', randomBg())
                 setAuthorizationToken(res.data.token);
                 this.props.LogIn();
                 this.context.router.history.push('/');
