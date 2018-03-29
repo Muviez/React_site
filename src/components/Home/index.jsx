@@ -8,6 +8,7 @@ function Home() {
             <div className='container'>
                 <div className='row justify-content-center align-items-center'>
                     <div className='content_button'>
+                        <Link to='/one-time-order' className='btn btn-primary'>Единоразовый заказ</Link>
                         <Link to='/register' className='btn btn-primary'>Регистрация</Link>
                         <Link to='/login' className='btn btn-primary'>Войти</Link>
                     </div>

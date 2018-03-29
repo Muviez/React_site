@@ -2,9 +2,15 @@ const webpack = require('webpack');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const path = require('path');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: {
+        app: [
+        'react-hot-loader/babel',
+        './src/index.jsx'
+        ]
+    },
 
     output: {
         filename: 'bundle.js',
@@ -16,9 +22,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)?$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['react-hot-loader', 'babel-loader']
+                loader:'babel-loader'
             },
             {
                 test: /\.css$/,
@@ -29,15 +35,19 @@ module.exports = {
             }
         ]
     },
-    
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify(NODE_ENV)
 			}
         }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        inline: true,
+        hot: true
     }
 };
+
+//loaders: ['react-hot-loader/webpack', 'babel?' + JSON.stringify({presets: ['react', 'es2015', 'stage-0']})],

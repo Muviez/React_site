@@ -1,5 +1,6 @@
 import React from 'react';
 import NotificationAlert from 'react-notification-alert';
+import PropTypes from 'prop-types';
 
 import { restore } from "../../../../actions/user.js";
 
@@ -100,7 +101,7 @@ class Restore extends React.Component {
 }
 
 Restore.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 export default Restore;

@@ -14,6 +14,8 @@ import ResetPassword from "./components/Auth/ResetPassword/FormResetPassPage/ind
 import Confirm from './components/Auth/Confirm/index.js'
 import ProtectedPage from './components/ProtectedPage.jsx';
 import User from './components/UserProfile/index.jsx';
+import Wizard from './components/Wizard/Wizard.jsx';
+import Board from "./components/Board/index.jsx";
 
 const Rootrouter = () => {
 
@@ -65,8 +67,10 @@ const Rootrouter = () => {
                 <IsAuth path='/reset' component={Reset} />
                 <IsAuth path='/reset-password' component={ResetPassword} />
                 <IsAuth path='/confirm' component={Confirm} />
+                <IsAuth path='/one-time-order' component={Wizard} />
                 <PrivateRoute path='/protected' component={ProtectedPage} />
                 <PrivateRoute path='/profile' component={User} />
+                <PrivateRoute path='/board' component={Board} />
             </Layout>
         </Router>
     );

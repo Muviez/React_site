@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { MenuItem } from './MenuItem.jsx';
 import { LogOut, logout } from '../../actions/user.js';
@@ -18,7 +19,7 @@ class Header extends Component {
 
     const userLinks = (
         <ul className="ml-auto navbar-nav">
-            <MenuItem content="Dashboard" link="" icon="design_bullet-list-67"  />
+            <MenuItem content="Board" link="board" icon="design_bullet-list-67"  />
             <MenuItem content="Protected Page" link="protected" icon="tech_mobile" />
             <MenuItem content="Profile" link="profile" icon="business_badge"  />
             <li className="nav-item">
@@ -32,7 +33,7 @@ class Header extends Component {
 
     const guestLinks = (
         <ul className="ml-auto navbar-nav">
-            <MenuItem content="Dashboard" link="" icon="design_bullet-list-67"  />
+            <MenuItem content="One Time Order" link="one-time-order" icon="design_bullet-list-67"  />
             <MenuItem content="Register" link="register" icon="tech_mobile" />
             <MenuItem content="Login" link="login" icon="users_circle-08"  />
         </ul>
@@ -61,7 +62,7 @@ class Header extends Component {
 }
 
 Header.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 // Function method

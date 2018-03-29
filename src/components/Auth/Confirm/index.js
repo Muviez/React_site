@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { takeToken } from "../../../utils/takeToken.js";
 
@@ -14,7 +15,7 @@ class Confirm extends React.Component {
 }
 
 Confirm.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 export default Confirm;

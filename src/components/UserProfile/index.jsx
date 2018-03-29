@@ -13,9 +13,6 @@ import Panels from './Components/Panels.jsx'
 import TabMenu from './Components/TabMenu.jsx'
 import { ChangeProfile } from "../../actions/userProfile.js";
 
-// import '../../../public/assets/img/bg5.jpg';
-// import '../../../public/assets/img/mike.jpg';
-
 const User = (props) => {
 
     const ChangeProfFunc = () => {

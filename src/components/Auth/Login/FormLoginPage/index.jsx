@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import Restore from '../../Restore/FormRestorePage/index.jsx';
 import { LogIn, login } from '../../../../actions/user.js';
@@ -139,7 +140,7 @@ class Login extends Component {
 };
 
 Login.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state){

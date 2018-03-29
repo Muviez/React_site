@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { takeToken } from "../../../../utils/takeToken.js";
 
 class Reset extends React.Component {
@@ -15,7 +15,7 @@ class Reset extends React.Component {
 }
 
 Reset.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 export default Reset;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import NotificationAlert from 'react-notification-alert';
+import PropTypes from 'prop-types';
 
 import { resetpassword } from "../../../../actions/user.js";
 
@@ -137,7 +138,7 @@ class ResetPassword extends Component {
 }
 
 ResetPassword.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
 }
 
 export default ResetPassword;
