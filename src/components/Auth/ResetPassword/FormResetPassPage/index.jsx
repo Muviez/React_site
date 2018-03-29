@@ -62,7 +62,7 @@ class ResetPassword extends Component {
         if(State["newPasswordState"] === "has-success" && State["ConfPassState"] === "has-success") {
             resetpassword(userData)
             .then(res => {
-                console.log(res);
+                localStorage.removeItem("resetToken");
                 this.notify();
                 setTimeout(() => {
                     this.context.router.history.push('/login');

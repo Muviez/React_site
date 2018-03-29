@@ -9,7 +9,8 @@ class Restore extends React.Component {
         super(props);
         this.state = {
             State: {
-                emailState: ""
+                emailState: "",
+                error: ""
             },
             restore: {
                 email: ""
@@ -34,6 +35,7 @@ class Restore extends React.Component {
         var userData = this.state.restore;
         if(State["emailState"] !== "has-success")
             State["emailState"] = "has-danger";
+        State["error"] = " ";
         this.setState({State});
         if(State["emailState"] === "has-success") {
             restore(userData)
@@ -42,7 +44,9 @@ class Restore extends React.Component {
                 this.notify();
             })
             .catch(err => {
-                console.log("RESTORE ERR = " + res.data);
+                if(err.response.data.response_code === "NO_SUCH_EMAIL")
+                    State["error"] = "Указан не существующий E-mail адрес ";
+                this.setState({State});
             });
         }
     }
@@ -90,6 +94,7 @@ class Restore extends React.Component {
                                 <button type='submit' className='btn btn-primary confPass'>Отправить</button>
                             </form>
                         </div>
+                        <h6>{this.state.State.error}</h6>
                         <div className='modal-footer'>
                             <button type='button' className='btn btn-secondary' data-dismiss='modal'>Закрыть</button>
                         </div>

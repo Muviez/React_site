@@ -18,6 +18,11 @@ if(localStorage.JWToken) {
     store.dispatch(LogIn());
 }
 
+if(localStorage.resetTimestamp + 1 <= Date.now()) { // finish 
+    localStorage.removeItem("resetToken");          // this
+    localStorage.removeItem("resetTimestamp");
+}
+
 render(
     <Provider store={store}>
         <Rootrouter />                              

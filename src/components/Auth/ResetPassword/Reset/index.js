@@ -5,7 +5,8 @@ import { takeToken } from "../../../../utils/takeToken.js";
 class Reset extends React.Component {
     
     componentDidMount() {
-        localStorage.setItem("resetToken", takeToken())
+        localStorage.setItem("resetToken", takeToken());
+        localStorage.setItem("resetTimestamp", Date.now());
         this.context.router.history.push('/reset-password');
     }
     
