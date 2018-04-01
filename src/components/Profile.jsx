@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Profile() {
     return (
-        <div className='content'>
+        
             <div className='container'>
                 <div className='row justify-content-center align-items-center'>
                     <div className='content_button'>
@@ -13,7 +13,7 @@ function Profile() {
                 </div>
             </div>
 
-        </div>
+       
     );
 }
 

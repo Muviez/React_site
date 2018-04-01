@@ -59,7 +59,9 @@ body {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex; 
+  justify-content: center;
+  text-align: center}
 
 .layout .content_button a {
   font-size: 3rem;
@@ -169,6 +171,8 @@ body {
 .layout .footer .footer_menu li, .footer_soc-icon li{
   list-style: none;}
 
+
+
 .info-title {
   color: #fff;
 }
@@ -234,11 +238,6 @@ body {
   width: 100% !important;
 }
 
-
-.wizard-container .card-wizard .wizard-navigation .moving-tab {
-  margin-top: 10px !important;
-}
-
 .wizard-container .card-wizard .wizard-navigation .moving-tab {
   margin-right: 0px !important;
   margin-top: 10px !important;
@@ -278,14 +277,14 @@ body {
   margin-bottom: 0 !important;
 }
 
-
-
-
-
-
-
-
-
+@media only screen and (max-width: 1200px) {
+  .layout .content_button .oneOrder {
+    margin-bottom: 2rem;
+  }
+  .wizard-container .card-wizard .wizard-navigation .moving-tab {
+    margin-left: 2px !important;
+  }
+}
 
 @media (max-width: 992px) {
   .navbar-expand-lg .navbar-collapse {
@@ -308,5 +307,48 @@ body {
     border-radius: .1875rem;
     color: #888 !important;
   }
+  .wizard-container .card-wizard .wizard-navigation .moving-tab {
+    width: 100px !important;
+    margin-left: 7m px !important;
+  }
   
+}
+
+@media only screen and (max-width: 768px) {
+  .layout .content_button .reg {
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wizard-container .card-wizard .wizard-navigation .moving-tab {
+    width: 150px !important;
+    margin-left: 55px !important;
+    margin-top: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .layout .content_button a {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 427px) {
+  .layout .footer .descr_footer {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .layout .content_button a {
+    font-size: 2.35rem;
+  }
+}
+
+@media only screen and (max-width: 335px) {
+  .layout .content_button a {
+    font-size: 2.25rem;
+  }
 }

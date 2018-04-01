@@ -94,13 +94,21 @@ class Step3 extends React.Component{
     }
     isValidated(){
         if(this.state.addressState !== " has-success" || this.state.cityState !== " has-success" || this.state.countryState !== " has-success" || this.state.dateState !== " has-success" || this.state.timeState !== " has-success"){
-            this.setState({
-                addressState: " has-danger",
-                cityState: " has-danger",
-                countryState: " has-danger",
-                dateState: " has-danger",
-                timeState: " has-danger"
-            });
+            if(this.state.addressState !== " has-success")
+                this.setState({ addressState: " has-danger" });
+
+            if(this.state.cityState !== " has-success")
+                this.setState({ cityState: " has-danger" });
+
+            if(this.state.countryState !== " has-success")
+                this.setState({ countryState: " has-danger" });
+
+            if(this.state.dateState !== " has-success")
+                this.setState({ dateState: " has-danger" });
+
+            if(this.state.timeState !== " has-success")
+                this.setState({ timeState: " has-danger" });
+
             return false;
         }
         return true;

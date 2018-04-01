@@ -88,7 +88,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className='content'>
+            
                 <div className='container'>
                     <div className='row justify-content-center'>
                         <div className='col-md-7 col-lg-5 col-sm-9 col-10'>
@@ -135,7 +135,7 @@ class Login extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            
         );
     }
 };

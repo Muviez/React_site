@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col } from 'reactstrap';
 // react plugin used to create a form with multiple steps
-import ReactWizard from 'react-bootstrap-wizard';
+import ReactWizard from './react-wizard.jsx';
 
 import Step1 from './Step1.jsx';
 import Step2 from './Step2.jsx';
@@ -31,7 +31,7 @@ class Wizard extends Component{
                             title="One-time order"
                             subtitle="This information will let us know more about you."
                             headerTextCenter
-
+                            nextButtonClasses={"btn-success"}
                         />
                     </Col>
                 </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import FormInputs  from './FormInputs.jsx';
+import FormInputs  from './../../../FormInputs.jsx';
 import Button from './CustomButton.jsx';
 
 import { SaveProfile, SaveProfData } from '../../../actions/userProfile.js';
@@ -63,65 +63,26 @@ class EditForm extends Component {
     emailUser(e){
         var userProf = this.state.userProf;
         userProf.email = e.target.value;
-
-        // var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(emailRex.test(e.target.value)){
-        //     userProf["loginEmailState"] = "has-success";
-        // } else {
-        //     userProf["loginEmailState"] = "has-danger";
-        // }
-
         this.setState({userProf});   
     }
     phoneUser(e){
         var userProf = this.state.userProf;
         userProf.phone = e.target.value;
-
-        // if(/^((8|+7)[\- ]?(\(?d{3}\)?[\- ]?)?[\id\- ]{7,10}$/.test(e.target.value) ){
-        //     userProf["loginEmailState"] = "has-success";
-        // } else {
-        //     userProf["loginEmailState"] = "has-danger";
-        // }
-
         this.setState({userProf});   
     }
     firstNameUser(e){
         var userProf = this.state.userProf;
         userProf.firstName = e.target.value;
-
-        // var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(emailRex.test(e.target.value)){
-        //     userProf["loginEmailState"] = "has-success";
-        // } else {
-        //     userProf["loginEmailState"] = "has-danger";
-        // }
-
         this.setState({userProf});   
     }
     lastNameUser(e){
         var userProf = this.state.userProf;
         userProf.lastName = e.target.value;
-
-        // var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(emailRex.test(e.target.value)){
-        //     userProf["loginEmailState"] = "has-success";
-        // } else {
-        //     userProf["loginEmailState"] = "has-danger";
-        // }
-
         this.setState({userProf});   
     }
     addressUser(e){
         var userProf = this.state.userProf;
         userProf.address = e.target.value;
-
-        // var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([A-z0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if(emailRex.test(e.target.value)){
-        //     userProf["loginEmailState"] = "has-success";
-        // } else {
-        //     userProf["loginEmailState"] = "has-danger";
-        // }
-
         this.setState({userProf});
     }
 
@@ -163,9 +124,8 @@ class EditForm extends Component {
                             }
                         }
                     ]}
-                    // onChange={(e) => this.loginUser(e)}
                 />
-                {/* <input type="text" onChange={(e) => this.loginUser(e)}/> */}
+
                 <FormInputs
                     ncols = {["col-md-6 pr-1" , "col-md-6 pl-1"]}
                     proprieties = {[
@@ -207,12 +167,11 @@ class EditForm extends Component {
                     ]}
                 />
                 <Button
-                    // bsStyle="info"
-                    // pullRight
                     className="btn btn-primary"
                     fill
                     type="button"
                     onClick={this.SaveProfFunc}
+                    
                 >
                     Save Profile
                 </Button>

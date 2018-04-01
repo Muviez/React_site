@@ -68,9 +68,9 @@ const Rootrouter = () => {
                 <IsAuth path='/reset-password' component={ResetPassword} />
                 <IsAuth path='/confirm' component={Confirm} />
                 <IsAuth path='/one-time-order' component={Wizard} />
-                <PrivateRoute path='/protected' component={ProtectedPage} />
-                <PrivateRoute path='/profile' component={User} />
-                <PrivateRoute path='/board' component={Board} />
+                <IsAuth path='/protected' component={ProtectedPage} />
+                <IsAuth path='/profile' component={User} />
+                <IsAuth path='/board' component={Board} />
             </Layout>
         </Router>
     );
