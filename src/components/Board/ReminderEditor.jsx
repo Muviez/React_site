@@ -9,67 +9,8 @@ import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { AddCard } from '../../actions/addReminder.js';
-
-const Month = [
-'01',
-'02',
-'03',
-'04',
-'05',
-'06',
-'07',
-'08',
-'09',
-'10',
-'11',
-'12'
-];
-
-const frequencyOfReminder = [
-    { value: 'one-time', label: 'Разовое событие' },
-    { value: 'every-month', label: 'Каждый месяц' },
-    { value: 'every-year', label: 'Каждый год' }
-];
-
-const reasonSelect = [
-    { value: 'newYear',      label: 'Новый Год'},
-    { value: 'birthday',     label: 'День Рождения'},
-    { value: 'anniversary',  label: 'Юбилей'},
-    { value: 'valentineDay', label: '14 Февраля'},
-    { value: 'womenDay',     label: '8 Марта'},
-    { value: 'defenderDay',  label: '23 Февраля'},
-    { value: 'wedding',      label: 'Свадьба'},
-    { value: 'knowledgeDay', label: '1 Сентября'},
-    { value: 'springDay',    label: '1 Мая'},
-    { value: 'victoryDay',   label: '9 Мая'},
-    { value: 'yearly',       label: 'Годовщина'}
-];
-
-const whomSelect = [
-    { value: 'mother',       label: 'Маме'},
-    { value: 'father',       label: 'Папе'},
-    { value: 'wife',         label: 'Жене'},
-    { value: 'husband',      label: 'Мужу'},
-    { value: 'boyfriend',    label: 'Парню'},
-    { value: 'girlfriend',   label: 'Девушке'},
-    { value: 'friend',       label: 'Другу'},
-    { value: 'femalefriend', label: 'Подруге'},
-    { value: 'brother',      label: 'Брату'},
-    { value: 'sister',       label: 'Сестре'},
-    { value: 'grandmother',  label: 'Бабушке'},
-    { value: 'grandfather',  label: 'Дедушке'},
-    { value: 'aunt',         label: 'Тёте'},
-    { value: 'uncle',        label: 'Дядя'},
-    { value: 'boss',         label: 'Шефу'},
-    { value: 'employees',    label: 'Cотрудникам'},
-    { value: 'colleague',    label: 'Коллеге'}
-];
-
-
-const date = new Date();
-
-const curDate = date.getDate() + "/" + Month[date.getMonth()] + "/" + date.getFullYear();
+import { AddCard } from '../../actions/ReminderCard.js';
+import { frequencyOfReminder, reasonSelect, whomSelect } from "./selectArrays.js";
 
 class ReminderEditor extends React.Component {
     constructor() {
@@ -221,7 +162,7 @@ class ReminderEditor extends React.Component {
                                             <span className="form-check-sign"></span>
                                             <div>За 3 месяца</div>
                                         </label>
-                                    </div>                         
+                                    </div>
                                 </form>
                             </div>
                             <div className="card-footer">

@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import loginUser from './user.js';
 import userProfile from "./userProfile.js";
-import addReminder from "./addReminder.js";
+import reminderReducer from "./ReminderCard.js";
 
 const rootReducer = combineReducers({
    loginUser,
    userProfile,
-   addReminder
+   reminderReducer
 })
 
 export default rootReducer;

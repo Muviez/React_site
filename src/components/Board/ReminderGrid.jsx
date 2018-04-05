@@ -2,40 +2,36 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Card from './Card.jsx';
+
 class ReminderGrid extends React.Component {
     constructor(props) {
         super(props);
 
     }
 
+    
     render() {
         return (
             <div className="container">
                 <div className="row">
-                    {this.props.addCardRem.map(function(key, obj){
-                        console.log("OBJECT: " + key.title);
-                        return (
-                            <div className="col-lg-4 mb-4">
-                                <div className="card" data-background-color="orange">
-                                    <div className="card-body content-danger">
-                                        <h5 className="category-social">
-                                            {key.title}
-                                        </h5>
-                                        <h4 className="card-title">
-                                            <a href="#nuk">{key.datetime}</a>
-                                        </h4>
-                                        <p className="card-description">
-                                            {key.reason} : {key.towhom}
-                                        </p>
-                                        <div className="card-footer text-center">
-                                            <a href="#pablo" className="btn btn-default btn-round">Add Gift</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+                    {this.props.reminder.map(function(key, obj){
+                            // console.log("OBJECT: " + key.title);
+                            return (
+                                <Card 
+                                    key={key.id}
+                                    id={key.id}
+                                    title={key.title}
+                                    datetime={key.datetime}
+                                    reason={key.reason}
+                                    towhom={key.towhom}
+                                    frequency={key.frequency}
+                                    remindForWeek={key.remindForWeek}
+                                    remindForMonth={key.remindForMonth}
+                                    remindForThreeMonth={key.remindForThreeMonth}
+                                />
+                            );
+                        })}
                 </div>
             </div>
         );
@@ -44,12 +40,12 @@ class ReminderGrid extends React.Component {
 
 function mapStateToProps(state){
     return {
-        addCardRem: state.addReminder
+        reminder: state.reminderReducer
     }
 };
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({ AddCard: AddCard }, dispatch)
-// };
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ AddCard: AddCard }, dispatch)
+};
 
-export default connect(mapStateToProps)(ReminderGrid);
+export default connect(mapStateToProps, null)(ReminderGrid);
