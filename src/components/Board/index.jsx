@@ -13,11 +13,11 @@ class Board extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-4">
+                    <div className="col-xl-3 col-lg-4">
                         <ReminderEditor />
                         
                     </div>
-                    <div className="col-lg-8">
+                    <div className="col-xl-9 col-lg-8">
                         <ReminderGrid />
                     </div>
                 </div>

@@ -281,12 +281,26 @@ body {
   position: relative;
 }
 
-.card-notify:hover .edit-card {
+.card-blog:hover .edit-card-btn, .card-blog:hover .remove-card-btn {
   opacity: 1;
   transition: all 0.2s ease;
 }
 
-.edit-card {
+.edit-card-btn {
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  background: transparent;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.remove-card-btn {
   position: absolute;
   right: 15px;
   top: 20px;
@@ -294,11 +308,23 @@ body {
   border: none;
   outline: none !important;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 24px;
   color: #fff;
   opacity: 0;
   transition: all 0.2s ease;
 }
+
+.gift {
+  height: 150px;
+  width: 300px;
+  border-radius: 15px;
+  border: 3px solid white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
 
 @media only screen and (max-width: 1200px) {
   .layout .content_button .oneOrder {

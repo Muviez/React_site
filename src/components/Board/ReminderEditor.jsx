@@ -10,23 +10,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { AddCard } from '../../actions/ReminderCard.js';
-import { frequencyOfReminder, reasonSelect, whomSelect } from "./selectArrays.js";
+import { frequencyOfReminder, reasonSelect, whomSelect } from "../../arrays/selectArrays.js";
 
 class ReminderEditor extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            State: {
-                loginState: "",
-                emailState: "",
-                EmailState: "",
-                phoneState: "",
-                firstNameState: "",
-                lastNameState: "",
-                addressState: ""
-            },
-
+            emptyInputError: "",
             ReminderInputs: {
                 title: "",
                 reason: "",
@@ -41,8 +32,25 @@ class ReminderEditor extends React.Component {
 
     }
 
-    AddCardFunc = e => {
-        this.props.AddCard(this.state.ReminderInputs);
+    AddCardFunc = () => {
+        let state = this.state;
+        if( this.state.ReminderInputs.title !== "" && this.state.ReminderInputs.reason !== "" && this.state.ReminderInputs.towhom !== "" &&
+            this.state.ReminderInputs.datetime !== "" && this.state.ReminderInputs.frequency !== "" ) {
+                this.props.AddCard(this.state.ReminderInputs);
+                state.emptyInputError = "";
+                state.ReminderInputs.title = "";
+                state.ReminderInputs.reason = "";
+                state.ReminderInputs.towhom = "";
+                state.ReminderInputs.datetime = null;
+                state.ReminderInputs.frequency = "";
+                state.ReminderInputs.remindForWeek = false;
+                state.ReminderInputs.remindForMonth = false;
+                state.ReminderInputs.remindForThreeMonth = false;
+            }
+        else {
+            state.emptyInputError = "Заполните поля со звездочкой!"; 
+        }
+        this.setState({ state });
     }
    
     changeDate = () => {
@@ -95,87 +103,83 @@ class ReminderEditor extends React.Component {
 
     render() {
         return (
-            // <div className="container-fluid">
-            //     <div className="row">               
-            //         <Col md={4}>
-                        <div className="card">
-                            <div className="card-body card_content">
-                                <form>
-                                    <div className="input-group">
-                                        <span className="input-group-addon">
-                                        <i className="now-ui-icons icons-form users_circle-08"></i>
-                                        </span>
-                                        <input name="title" onChange={(value) => this.changeTitle(value)} type="text" className="form-control" placeholder="Заголовок" />
-                                    </div>
-                                    <Select
-                                        placeholder="Повод"
-                                        name="reason"
-                                        value={this.state.ReminderInputs.reason}
-                                        options={reasonSelect}
-                                        onChange={(value) => this.changeReason(value)}
-                                        className="my-4"
-                                    />
-                                    <Select
-                                        placeholder="Кому"
-                                        name="toWhom"
-                                        value={this.state.ReminderInputs.towhom}
-                                        options={whomSelect}
-                                        onChange={(value) => this.changeToWhom(value)}
-                                        className="my-4"
-                                    />
-                                    <Row className="mb-5">
-                                        <Col xs={5} >
-                                            <Datetime
-                                                dateFormat="DD/MM/YYYY"
-                                                locale="ru"
-                                                inputProps={{placeholder:"   Дата и время", id: "datatimepicker"}}
-                                                onBlur={() => this.changeDate()}
-                                            />
-                                        </Col> 
-                                        <Col xs={7} className="pl-1">
-                                            <Select
-                                                placeholder="  Переодичность напоминаний"
-                                                name="frequency"
-                                                value={this.state.ReminderInputs.frequency}
-                                                options={frequencyOfReminder}
-                                                onChange={(value) => this.changeFrequency(value)}
-                                            />
-                                        </Col>
-                                    </Row>
-                                    <div className="form-check">
-                                        <label className="form-check-label">
-                                            <input name="remindForWeek" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" />
-                                            <span className="form-check-sign"></span>
-                                            <div>За неделю</div>
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <label className="form-check-label">
-                                            <input name="remindForMonth" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" />
-                                            <span className="form-check-sign"></span>
-                                            <div>За месяц</div>
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <label className="form-check-label">
-                                            <input name="remindForThreeMonth" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" />
-                                            <span className="form-check-sign"></span>
-                                            <div>За 3 месяца</div>
-                                        </label>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="card-footer">
-                                <button 
-                                    className="btn btn-primary" 
-                                    type="button"
-                                    onClick={this.AddCardFunc}
-                                >Add card</button>
-                            </div>
+            <div className="card">
+                <div className="card-body card_content">
+                    <form>
+                        <div className="input-group">
+                            <span className="input-group-addon">
+                            <i className="now-ui-icons icons-form users_circle-08"></i>
+                            </span>
+                            <input name="title" value={this.state.ReminderInputs.title} onChange={(value) => this.changeTitle(value)} type="text" className="form-control" placeholder="Заголовок *" />
                         </div>
-            //         </Col>
-            //     </div>
-            // </div>
+                        <Select
+                            placeholder="Повод *"
+                            name="reason"
+                            value={this.state.ReminderInputs.reason}
+                            options={reasonSelect}
+                            onChange={(value) => this.changeReason(value)}
+                            className="my-4"
+                        />
+                        <Select
+                            placeholder="Кому *"
+                            name="toWhom"
+                            value={this.state.ReminderInputs.towhom}
+                            options={whomSelect}
+                            onChange={(value) => this.changeToWhom(value)}
+                            className="my-4"
+                        />
+                        <Row className="mb-5">
+                            <Col xs={5} >
+                                <Datetime
+                                    dateFormat="DD/MM/YYYY"
+                                    locale="ru"
+                                    inputProps={{placeholder:"   Дата и время *", id: "datatimepicker"}}
+                                    onBlur={() => this.changeDate()}
+                                    value={this.state.ReminderInputs.datetime}
+                                />
+                            </Col> 
+                            <Col xs={7} className="pl-1">
+                                <Select
+                                    placeholder="  Переодичность напоминаний *"
+                                    name="frequency"
+                                    value={this.state.ReminderInputs.frequency}
+                                    options={frequencyOfReminder}
+                                    onChange={(value) => this.changeFrequency(value)}
+                                />
+                            </Col>
+                        </Row>
+                        <p className="card-pricing">{this.state.emptyInputError}</p>
+                        <div className="form-check">
+                            <label className="form-check-label">
+                                <input name="remindForWeek" checked={this.state.ReminderInputs.remindForWeek} onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" />
+                                <span className="form-check-sign"></span>
+                                <div>За неделю</div>
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <label className="form-check-label">
+                                <input name="remindForMonth" checked={this.state.ReminderInputs.remindForMonth} onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" />
+                                <span className="form-check-sign"></span>
+                                <div>За месяц</div>
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <label className="form-check-label">
+                                <input name="remindForThreeMonth" checked={this.state.ReminderInputs.remindForThreeMonth} onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" />
+                                <span className="form-check-sign"></span>
+                                <div>За 3 месяца</div>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div className="card-footer">
+                    <button 
+                        className="btn btn-primary" 
+                        type="button"
+                        onClick={this.AddCardFunc}
+                    >Add card</button>
+                </div>
+            </div>
         );
     }
 }

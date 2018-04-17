@@ -4,8 +4,9 @@ import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { frequencyOfReminder, reasonSelect, whomSelect } from "./selectArrays.js";
-import { EditCard } from './../../actions/ReminderCard.js'
+import { frequencyOfReminder, reasonSelect, whomSelect } from "../../arrays/selectArrays.js";
+import { EditCard, DeleteCard } from './../../actions/ReminderCard.js'
+import { AddCardId } from './../../actions/CardId.js'
 
 class Card extends React.Component {
     constructor(props) {
@@ -19,27 +20,39 @@ class Card extends React.Component {
                 towhom: this.props.towhom,
                 datetime: this.props.datetime,
                 frequency: this.props.frequency,
-                remindForWeek: this.props.remindForWeek,
-                remindForMonth: this.props.remindForMonth,
-                remindForThreeMonth: this.props.remindForThreeMonth
+                remindForWeek: this.props.remindForWeek || false,
+                remindForMonth: this.props.remindForMonth || false,
+                remindForThreeMonth: this.props.remindForThreeMonth || false
             }
         }
     }
     
     editingCard = () => {
-        this.setState({ editing: true })
+        this.setState({ editing: true });
+    }
+
+    closeCard = () => {
+        this.setState({ editing: false });
     }
 
     saveCard = () => {
-        this.setState({ editing: false })
+        this.setState({ editing: false });
         this.props.EditCard(this.props.id, this.state.ReminderInputs);
-        console.log("TEST" + this.props.EditCard)
-        console.log("REDUCER STATE" + this.props.reminder)
+    }
+
+    deleteCard = () => {
+        this.props.DeleteCard(this.props.id);
+    }
+
+    changeTitle = (e) => {
+        let d = this.state.ReminderInputs;
+        d.title = e.target.value;
+        this.setState({ d });
     }
 
     changeDate = () => {
         let d = this.state.ReminderInputs;
-        d.datetime = document.getElementById("datatimepicker").value;
+        d.datetime = document.getElementById("datetimepicker").value;
         this.setState({ d });
     }
 
@@ -61,25 +74,80 @@ class Card extends React.Component {
         this.setState({state});
     }
 
+    changeCheckbox = (event) => {
+        let state = this.state.ReminderInputs;
+        switch(event.target.name) {
+            case "remindForWeek":
+                state.remindForWeek = event.target.checked;
+                this.setState({state});
+                break;
+            case "remindForMonth":
+                state.remindForMonth = event.target.checked;
+                this.setState({state});
+                break;
+            case "remindForThreeMonth":
+                state.remindForThreeMonth = event.target.checked;
+                this.setState({state});
+                break;
+        }
+    }
+ 
     renderDisplay = () => {
         return(
             <div className="col-lg-4 mb-4">
-                <div className="card card-notify" data-background-color="orange">
-                    <div className="card-body content-danger">
-                        <h5 className="category-social">
-                            {this.state.ReminderInputs.title}
+                
+                <div className="card card-blog" data-background-color="orange">
+                    <div className="card-body">
+                        <h6 className="card-category text-success">
+                            {this.props.reason}
+                        </h6>
+
+                        <button className="edit-card-btn" onClick={this.editingCard}><i className="now-ui-icons ui-1_settings-gear-63"></i></button>
+                        <button className="remove-card-btn" onClick={this.deleteCard}><i className="now-ui-icons ui-1_simple-remove"></i></button>
+
+                        <h5 className="card-title">
+                            <a href="#pablo">{this.props.title}</a>
                         </h5>
-                        <button className="edit-card" onClick={this.editingCard}><i className="now-ui-icons ui-1_settings-gear-63"></i></button>
-                        <h4 className="card-title">
-                            <a href="#nuk">{this.state.ReminderInputs.datetime}</a>
-                        </h4>
-                        <p className="card-description">
-                            {this.state.ReminderInputs.reason} : {this.state.ReminderInputs.towhom}
-                        </p>
-                        <div className="card-footer text-center">
-                            <button className="btn btn-default btn-round">Add Gift</button>
+                        <div className="stats">
+                            <i aria-hidden="true" className="fa fa-clock-o"></i> {this.props.datetime}
                         </div>
 
+                        <hr />
+                        {console.log(this.props.present)}
+                        {/* {this.props.present.map(function(obj){
+                                    return (
+                                        <div key={obj.idGift ? obj.idGift : ""}>
+                                            <div className="info">
+                                                <div className="description">
+                                                    <h4 className="info-title">Подарок {obj.idGift ? obj.idGift : ""}</h4>
+                                                    <p>Категория: {obj.category ? obj.category : ""}</p>
+                                                    <p>Предмет: {obj.item ? obj.item : ""}</p>
+                                                    <p>Количество: {obj.count ? obj.count : ""}</p>
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                    );
+                                    })} */}
+
+                                    {/* <div className="info">
+                                        <div className="description">
+                                            <h4 className="info-title">Подарок {this.props.present.id}</h4>
+                                            <p>Категория: {this.props.present.category}</p>
+                                            <p>Предмет: {this.props.present.item}</p>
+                                            <p>Количество: {this.props.present.count}</p>
+
+                                        </div>
+                                    </div>
+                                    <hr /> */}
+
+                        
+                        
+                        
+                        <div className="card-footer text-center">
+                            <button className="btn btn-default btn-round" onClick={() => this.props.AddCardId(this.props.id)} data-toggle="modal" data-target="#exampleModal2">Add Gift</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,11 +159,11 @@ class Card extends React.Component {
             <div className="col-lg-4 mb-4">
                 <div className="card card-notify">
                     <div className="card-body content-danger">
-                        <input type="text" className="form-control" onChange={(value) => this.setState({ title: value })} defaultValue={this.state.ReminderInputs.title}/>
+                        <input type="text" className="form-control" onChange={(e) => this.changeTitle(e)} value={this.state.ReminderInputs.title}/>
                         <Datetime
                             dateFormat="DD/MM/YYYY"
                             locale="ru"
-                            inputProps={{placeholder:"   Дата и время", id: "datatimepicker"}}
+                            inputProps={{placeholder:"   Дата и время", id: "datetimepicker"}}
                             defaultValue={this.props.datetime}
                             onBlur={() => this.changeDate()}
                             className="my-4"
@@ -147,7 +215,8 @@ class Card extends React.Component {
                             </label>
                         </div>
                         <div className="card-footer text-center">
-                            <button onClick={this.saveCard} className="btn btn-default btn-round">Save</button>
+                            <button onClick={this.saveCard} className="btn btn-success btn-round">Save</button>
+                            <button onClick={this.closeCard} className="btn btn-danger btn-round">Close</button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +236,7 @@ function mapStateToProps(state){
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ EditCard: (id, ReminderInputs) => EditCard }, dispatch)
+    return bindActionCreators(Object.assign({}, { EditCard: EditCard }, { DeleteCard: DeleteCard }, { AddCardId: AddCardId }), dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

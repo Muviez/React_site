@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Card from './Card.jsx';
+import GiftModal from './GiftModal.jsx';
 
 class ReminderGrid extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class ReminderGrid extends React.Component {
             <div className="container">
                 <div className="row">
                     {this.props.reminder.map(function(key, obj){
-                            // console.log("OBJECT: " + key.title);
+
                             return (
                                 <Card 
                                     key={key.id}
@@ -29,9 +30,11 @@ class ReminderGrid extends React.Component {
                                     remindForWeek={key.remindForWeek}
                                     remindForMonth={key.remindForMonth}
                                     remindForThreeMonth={key.remindForThreeMonth}
+                                    present={key.gifts}
                                 />
                             );
                         })}
+                        <GiftModal cardId={this.props.cardId.activeCardId} />
                 </div>
             </div>
         );
@@ -40,7 +43,8 @@ class ReminderGrid extends React.Component {
 
 function mapStateToProps(state){
     return {
-        reminder: state.reminderReducer
+        reminder: state.reminderReducer,
+        cardId: state.cardIdReducer
     }
 };
 
