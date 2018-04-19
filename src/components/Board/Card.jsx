@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { frequencyOfReminder, reasonSelect, whomSelect } from "../../arrays/selectArrays.js";
 import { EditCard, DeleteCard } from './../../actions/ReminderCard.js'
 import { AddCardId } from './../../actions/CardId.js'
+import { DeleteGift } from '../../actions/Gift.js'
 
 class Card extends React.Component {
     constructor(props) {
@@ -93,6 +94,7 @@ class Card extends React.Component {
     }
  
     renderDisplay = () => {
+        const cID = this.props.id;
         return(
             <div className="col-lg-4 mb-4">
                 
@@ -113,23 +115,27 @@ class Card extends React.Component {
                         </div>
 
                         <hr />
-                        {console.log(this.props.present)}
-                        {/* {this.props.present.map(function(obj){
-                                    return (
-                                        <div key={obj.idGift ? obj.idGift : ""}>
-                                            <div className="info">
-                                                <div className="description">
-                                                    <h4 className="info-title">Подарок {obj.idGift ? obj.idGift : ""}</h4>
-                                                    <p>Категория: {obj.category ? obj.category : ""}</p>
-                                                    <p>Предмет: {obj.item ? obj.item : ""}</p>
-                                                    <p>Количество: {obj.count ? obj.count : ""}</p>
-
-                                                </div>
+                        
+                        {this.props.gift.map(function(obj){
+                            if(obj.cid === cID) {
+                                return (
+                                    <div key={obj.id ? obj.id : ""}>
+                                        <div className="info">
+                                            <div className="description">
+                                                <h4 className="info-title">Подарок {obj.id ? obj.id : ""}</h4>
+                                                <p>Категория: {obj.category ? obj.category : ""}</p>
+                                                <p>Предмет: {obj.item ? obj.item : ""}</p>
+                                                <p>Количество: {obj.count ? obj.count : ""}</p>
+    
                                             </div>
-                                            <hr />
                                         </div>
-                                    );
-                                    })} */}
+                                        <hr />
+                                    </div>
+                                );
+                            }
+                            else
+                                return null;
+                        })}
 
                                     {/* <div className="info">
                                         <div className="description">
@@ -231,12 +237,13 @@ class Card extends React.Component {
 
 function mapStateToProps(state){
     return {
-        reminder: state.reminderReducer
+        reminder: state.reminderReducer,
+        gift: state.giftReducer
     }
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Object.assign({}, { EditCard: EditCard }, { DeleteCard: DeleteCard }, { AddCardId: AddCardId }), dispatch)
+    return bindActionCreators(Object.assign({}, { EditCard: EditCard }, { DeleteCard: DeleteCard }, { AddCardId: AddCardId }, { DeleteGift: DeleteGift }), dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

@@ -34,11 +34,11 @@ class Step4 extends React.Component{
     render(){
         return (
             <div>
-                <h5 className="info-text"> Step 3 </h5>
+                <h5 className="info-text"> Step 4 </h5>
                 <Row className="justify-content-center">
                     <Col xs={12} lg={10}>
                         <Row className="justify-content-center">
-                            <Col xs={12} sm={4}>
+                            <Col xs={6} sm={4}>
                                 <IconCheckbox
                                     name="job"
                                     value="Anonymous order"
@@ -46,7 +46,7 @@ class Step4 extends React.Component{
                                     title="Anonymous order"
                                 />
                             </Col>
-                            <Col xs={12} sm={4}>
+                            <Col xs={6} sm={4}>
                                 <div className={"choice" + (this.state.checkedPersDataState)} onClick={() => this.setCheck()}>
                                     <input type="checkbox" name="job" value="Consent to the processing of personal data" ref="checkbox"/>
                                     <div className="icon">

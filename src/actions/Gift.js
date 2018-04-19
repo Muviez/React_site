@@ -1,4 +1,4 @@
-let nextId = 111;
+let nextId = 2;
 
 export const AddGift = ({ cid, category, item, count }) => {
     return {

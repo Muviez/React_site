@@ -118,7 +118,7 @@ class Step3 extends React.Component{
             <div className="Step_3">
                 <h5 className="info-text">Step 2</h5>
                 <Row className="justify-content-center">
-                    <Col xs={12} sm={5}>
+                    <Col xs={6} sm={5}>
                         <Label>City</Label>
                         <InputGroup size="md" className={(this.state.cityState ? this.state.cityState:"")}>
                             <div className="input-group-addon">
@@ -127,7 +127,7 @@ class Step3 extends React.Component{
                             <Input defaultValue={this.state.city} type="text" placeholder="City (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.cityChange(e)}/>
                         </InputGroup>
                     </Col>
-                    <Col xs={12} sm={5}>
+                    <Col xs={6} sm={5}>
                         <Label>Country</Label>
                         <InputGroup size="md" className={(this.state.countryState ? this.state.countryState:"")}>
                             <div className="input-group-addon">
@@ -146,7 +146,7 @@ class Step3 extends React.Component{
                         </InputGroup>
                     </Col>
 
-                    <Col xs={12} sm={5}>
+                    <Col xs={6} sm={5}>
                         <Label>Date</Label>
                         <InputGroup size="md" className={(this.state.dateState ? this.state.dateState:"")}>
                             <div className="input-group-addon">
@@ -155,7 +155,7 @@ class Step3 extends React.Component{
                             <Input defaultValue={this.state.date} type="text" placeholder="12.12.2018 (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.dateChange(e)}/>
                         </InputGroup>
                     </Col>
-                    <Col xs={12} sm={5}>
+                    <Col xs={6} sm={5}>
                         <Label>Time</Label>
                         <InputGroup size="md" className={(this.state.timeState ? this.state.timeState:"")}>
                             <div className="input-group-addon">

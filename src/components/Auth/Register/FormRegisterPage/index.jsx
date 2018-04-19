@@ -131,10 +131,10 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid mt">
                 <NotificationAlert ref="notificationAlert"/>
                 <div className="justify-content-center row">
-                    <div className="col-12 col-sm-10 col-md-6 col-lg-5">
+                    <div className="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-5">
                         <div className="info-area info-horizontal">
                             <div className="icon icon-info">
                                 <i className="now-ui-icons media-2_sound-wave"></i>
@@ -163,7 +163,7 @@ class Register extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-7 col-md-8 col-lg-5 col-xl-3">
+                    <div className="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-4">
                         <div className="card-signup card">
                             <div className="text-center card-header">
                                 <h4 className="card-title">Register</h4>
@@ -228,7 +228,6 @@ class Register extends Component {
                                     </div>
                                 </form>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

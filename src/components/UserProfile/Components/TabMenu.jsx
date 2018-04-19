@@ -23,7 +23,7 @@ function TabMenu(props) {
 
     return (
         <Nav pills className="nav-pills-primary nav-pills-icons justify-content-center">
-            <NavItem>
+            <NavItem className="mb-tab">
                 <NavLink
                     className={props.pageSub === "ps1" ? "active":""}
                     onClick={fstTab}
@@ -32,7 +32,7 @@ function TabMenu(props) {
                     Home
                 </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="mb-tab">
                 <NavLink
                     className={props.pageSub === "ps2" ? "active":""}
                     onClick={secTab}
@@ -41,7 +41,7 @@ function TabMenu(props) {
                     Messages
                 </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="mb-tab">
                 <NavLink
                     className={props.pageSub === "ps3" ? "active":""}
                     onClick={thrTab}

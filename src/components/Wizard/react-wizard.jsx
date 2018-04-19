@@ -144,7 +144,7 @@ class ReactWizard extends React.Component{
 
         if(mobile_device){
             vertical_level = parseInt(index / 2);
-            vertical_level = vertical_level * 38;
+            vertical_level = vertical_level * 55;
         }
         var movingTabStyle = {
             width: step_width,

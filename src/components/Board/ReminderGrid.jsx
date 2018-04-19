@@ -30,7 +30,7 @@ class ReminderGrid extends React.Component {
                                     remindForWeek={key.remindForWeek}
                                     remindForMonth={key.remindForMonth}
                                     remindForThreeMonth={key.remindForThreeMonth}
-                                    present={key.gifts}
+                                    // present={key.gifts}
                                 />
                             );
                         })}

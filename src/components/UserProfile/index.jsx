@@ -20,12 +20,10 @@ const User = (props) => {
         props.ChngProf();
     }
 
-
-
     return (
-        <div className="container-fluid ">
-            <div className="row align-items-center">
-                <Col className="col-7 offset-1">
+        <div className="container-fluid mtb-profile">
+            <div className="row align-items-center justify-content-center">
+                <Col className="col-xl-7 offset-xl-1 col-lg-7 offset-lg-1 col-md-10 offset-md-0 col-sm-12 col-12 profile-menu">
                     <Card>
                         <CardHeader>
                             {props.upProf && <h5 className="title">Edit Profile</h5>}
@@ -37,7 +35,7 @@ const User = (props) => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col md={3}  xs={12}>
+                <Col xl={3} lg={4} md={10} sm={12} xs={12} className="wrap-card-user">
                     <Card className="card-user">
                         <div className="image">
                             <img src={localStorage.bg} alt="..."/>
@@ -54,7 +52,7 @@ const User = (props) => {
                                 Address: {props.profileData.address ? props.profileData.address : "No info"}
                             </p>
                         </CardBody>
-                        {!props.upProf && <Button fill className="btn btn-primary" type="button" onClick={ChangeProfFunc}>Change Profile</Button> }
+                        {!props.upProf && <Button className="btn btn-primary" type="button" onClick={ChangeProfFunc}>Change Profile</Button> }
                     </Card>
                 </Col>
             </div>

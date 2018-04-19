@@ -67,11 +67,11 @@ const Rootrouter = () => {
                 <IsAuth path='/reset-password' component={ResetPassword} />
                 <IsAuth path='/confirm' component={Confirm} />
                 <IsAuth path='/one-time-order' component={Wizard} />
-                <PrivateRoute path='/profile' component={User} />
+                <IsAuth path='/profile' component={User} />
                 <IsAuth path='/board' component={Board} />
             </Layout>
         </Router>
     );
 }
-
+//PrivateRoute
 export default Rootrouter;

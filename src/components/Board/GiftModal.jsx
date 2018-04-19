@@ -50,7 +50,7 @@ class GiftModal extends React.Component {
             data.count = this.state.selectThree.value;
             data.cid = this.props.cardId;
             this.props.AddGift(data)
-            // console.log(data)
+            console.log(this.props.gift)
         }
     }
 

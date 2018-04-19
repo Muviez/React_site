@@ -53,6 +53,7 @@ class Step2 extends React.Component{
                 <Row className="justify-content-center">
                     <Col xs={12} lg={4}>
                         <Select
+                                className="mb-select"
                             placeholder="Категория подарка"
                             name="SelectOne"
                             value={this.state.selectOne}
@@ -62,6 +63,7 @@ class Step2 extends React.Component{
                     </Col>
                     <Col xs={12} lg={4}>
                         { this.state.disSelectTwo && <Select
+                                className="mb-select"
                                 placeholder="Подарок"
                                 name="SelectTwo"
                                 value={this.state.selectTwo}
@@ -72,6 +74,7 @@ class Step2 extends React.Component{
                     </Col>
                     <Col xs={12} lg={4}>
                         { this.state.disSelectThree && <Select
+                                className="mb-select"
                                 placeholder="Количество"
                                 name="SelectThree"
                                 value={this.state.selectThree}
