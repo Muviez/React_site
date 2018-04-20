@@ -74,7 +74,7 @@ class ReminderGrid extends React.Component {
                 <input 
                     type="text" 
                     placeholder="Поиск" 
-                    className="form-control search-input"
+                    className="form-control search-input mb-5"
                     onChange={(e) => this.find(e)}
                 />
                 <div className="row">
