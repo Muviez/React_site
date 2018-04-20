@@ -11,7 +11,12 @@ body {
 .layout {
   background: url("../img/main_bg.jpg");
   background-size: cover;
-  background-position: bottom;
+  /* background-repeat: repeat-y;
+  background-size: 100%; 
+  width: 100wv;
+  height: 100vh;
+  background-position: bottom; */
+  
 }
 
 .layout .header {
@@ -460,6 +465,11 @@ body {
 .layout .content .error-404 h3 em{
   margin-left: 10px;
 }
+/* 
+.layout .content .mt-block .search-input {
+
+  margin-bottom: 70px;
+} */
 
 @media only screen and (max-width: 600px) {
   .wizard-container .card-wizard .wizard-navigation .moving-tab {
