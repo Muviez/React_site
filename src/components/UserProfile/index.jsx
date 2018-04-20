@@ -16,14 +16,13 @@ import { ChangeProfile } from "../../actions/userProfile.js";
 const User = (props) => {
 
     const ChangeProfFunc = () => {
-        console.log(props.upProf)
         props.ChngProf();
     }
 
     return (
         <div className="container-fluid mtb-profile">
-            <div className="row align-items-center justify-content-center">
-                <Col className="col-xl-7 offset-xl-1 col-lg-7 offset-lg-1 col-md-10 offset-md-0 col-sm-12 col-12 profile-menu">
+            <div className="row row-width align-items-center justify-content-center">
+                <Col className="col-xl-7 col-lg-7 col-md-10 offset-md-0 col-sm-12 col-12 profile-menu">
                     <Card>
                         <CardHeader>
                             {props.upProf && <h5 className="title">Edit Profile</h5>}
@@ -47,12 +46,12 @@ const User = (props) => {
                                 description={props.profileData.login ? props.profileData.login : "No info"}
                             />
                             <p className="description text-left">
-                                Email address: {props.profileData.email ? props.profileData.email : "No info"} <br/>
-                                Phone: {props.profileData.phone ? props.profileData.phone : "No info"} <br/>
-                                Address: {props.profileData.address ? props.profileData.address : "No info"}
+                                Email адрес: {props.profileData.email ? props.profileData.email : "No info"} <br/>
+                                Телефон: {props.profileData.phone ? props.profileData.phone : "No info"} <br/>
+                                Адрес: {props.profileData.address ? props.profileData.address : "No info"}
                             </p>
                         </CardBody>
-                        {!props.upProf && <Button className="btn btn-primary" type="button" onClick={ChangeProfFunc}>Change Profile</Button> }
+                        {!props.upProf && <Button className="btn btn-primary" type="button" onClick={ChangeProfFunc}>Изменить профиль</Button> }
                     </Card>
                 </Col>
             </div>

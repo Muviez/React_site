@@ -10,25 +10,31 @@ function Panels(props) {
     return (
         <TabContent className="tab-space tab-subcategories" activeTab={props.pageSub}>
             <TabPane tabId="ps1">
-                Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. По всей lorem страна, коварных рукописи журчит первую семантика речью снова диких, использовало, продолжил строчка на берегу заголовок залетают пор. Они, продолжил!
                 <br/><br/>
-                Dramatically maintain clicks-and-mortar solutions without functional solutions.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis neque voluptatum labore voluptates earum excepturi quae facilis, corrupti repellat perspiciatis quia possimus accusamus repellendus ullam suscipit, voluptatibus dignissimos quibusdam praesentium consequuntur esse illo porro maxime obcaecati. Quasi cupiditate sunt iusto sit labore voluptates delectus. Autem, alias molestias nisi sapiente commodi at provident cumque excepturi maxime ut doloremque? Quas iusto suscipit optio ducimus, eaque labore repellendus ab architecto maxime provident soluta ut, quia illum aspernatur! Accusantium nihil ad voluptate animi sed sit maiores sequi, quam vitae veritatis, ea eos dolorem velit quae nostrum repellendus eligendi qui aperiam repudiandae incidunt! Debitis in necessitatibus optio delectus, magni eaque, minus mollitia vel ratione porro deleniti cum, laboriosam quaerat tempore tenetur dolor sed ipsa nihil.
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. Текстами они, диких бросил возвращайся маленькая семантика ее собрал послушавшись, великий своих lorem ручеек запятых если буквенных инициал. Жизни, грамматики?
+                Страна алфавит заглавных вопрос lorem. Ты свой рукописи, то использовало послушавшись свою? Он точках домах но текст парадигматическая что раз все даже безорфографичный. Пустился о выйти эта бросил, над гор.
+                Всеми ручеек послушавшись свой продолжил инициал моей там снова несколько которой, живет диких речью. Большой моей вершину скатился океана, агентство языкового текст однажды своего коварных, текстов, вскоре то ты рыбными.
+                Образ которой подзаголовок запятых что его инициал оксмокс предупредила вершину грамматики города, снова журчит не рыбного. Если не жаренные ipsum которой, выйти знаках они сбить имеет собрал инициал вопрос образ.
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. Текстами они, диких бросил возвращайся маленькая семантика ее собрал послушавшись.
             </TabPane>
             <TabPane tabId="ps2">
-                Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. По всей lorem страна, коварных рукописи журчит первую семантика речью снова диких, использовало, продолжил строчка на берегу заголовок залетают пор. Они, продолжил!
                 <br/><br/>
-                Dramatically maintain clicks-and-mortar solutions without functional solutions.
-                Dramatically maintain clicks-and-mortar solutions without functional solutions.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum adipisci nemo distinctio est illum. Ut, sequi laboriosam vitae repellat animi optio fugiat excepturi quidem nulla atque nemo quas, maxime dolor. Alias delectus minus beatae eveniet perspiciatis, nemo iusto harum eos. Error culpa nostrum perferendis inventore corporis molestiae sint, ipsum maxime provident quos doloribus eum atque nobis iure, nesciunt totam non. Autem illum adipisci nemo maiores soluta et molestiae numquam debitis exercitationem, consequuntur tempora, quis aperiam cumque quo eius velit fugit asperiores quidem fuga, aliquid iusto nihil natus! Velit voluptatibus molestias id! Delectus incidunt doloribus quisquam sequi et. Eveniet consequuntur magni totam dicta possimus aliquam corrupti aperiam natus cupiditate iusto magnam voluptas in, dolore nihil deleniti.
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. Текстами они, диких бросил возвращайся маленькая семантика ее собрал послушавшись, великий своих lorem ручеек запятых если буквенных инициал. Жизни, грамматики?
+                Страна алфавит заглавных вопрос lorem. Ты свой рукописи, то использовало послушавшись свою? Он точках домах но текст парадигматическая что раз все даже безорфографичный. Пустился о выйти эта бросил, над гор.
+                Всеми ручеек послушавшись свой продолжил инициал моей там снова несколько которой, живет диких речью. Большой моей вершину скатился океана, агентство языкового текст однажды своего коварных, текстов, вскоре то ты рыбными.
+                Образ которой подзаголовок запятых что его инициал оксмокс предупредила вершину грамматики города, снова журчит не рыбного. Если не жаренные ipsum которой, выйти знаках они сбить имеет собрал инициал вопрос образ.
+                Всеми ручеек послушавшись свой продолжил инициал моей там снова несколько которой, живет диких речью. Большой моей вершину скатился океана.
             </TabPane>
             <TabPane tabId="ps3">
-                Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. По всей lorem страна, коварных рукописи журчит первую семантика речью снова диких, использовало, продолжил строчка на берегу заголовок залетают пор. Они, продолжил!
                 <br/><br/>
-                Dynamically innovate resource-leveling customer service for state of the art customer service.
-                Dynamically innovate resource-leveling customer service for state of the art customer service.
-                Dynamically innovate resource-leveling customer service for state of the art customer service.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, nemo repellendus! Excepturi perferendis reprehenderit culpa eius ab veniam repellat ipsum a, vero sunt, nemo necessitatibus numquam aliquid labore unde blanditiis tempora asperiores earum quo corrupti ut amet. Ipsa eligendi impedit animi corporis ipsam quas error eos. Nisi et commodi explicabo! Dolorem deleniti recusandae aliquid alias corporis aut fugiat at. Neque quos, distinctio, reiciendis cupiditate molestias culpa aspernatur sint odit vitae explicabo inventore voluptas laboriosam officia asperiores quae consequuntur corrupti dolor ipsa id libero repudiandae. Velit ab facilis nesciunt, sapiente numquam iure, aspernatur amet quas at fuga
+                Далеко-далеко за, словесными горами в стране гласных и согласных живут рыбные тексты. Текстами они, диких бросил возвращайся маленькая семантика ее собрал послушавшись, великий своих lorem ручеек запятых если буквенных инициал. Жизни, грамматики?
+                Страна алфавит заглавных вопрос lorem. Ты свой рукописи, то использовало послушавшись свою? Он точках домах но текст парадигматическая что раз все даже безорфографичный. Пустился о выйти эта бросил, над гор.
+                Всеми ручеек послушавшись свой продолжил инициал моей там снова несколько которой, живет диких речью. Большой моей вершину скатился океана, агентство языкового текст однажды своего коварных, текстов, вскоре то ты рыбными.
+                Образ которой подзаголовок запятых что его инициал оксмокс предупредила вершину грамматики города, снова журчит не рыбного. Если не жаренные ipsum которой, выйти знаках они сбить имеет собрал инициал вопрос образ.
+                Страна алфавит заглавных вопрос lorem. Ты свой рукописи, то использовало послушавшись свою? Всеми ручеек послушавшись.
 
             </TabPane>
         </TabContent>

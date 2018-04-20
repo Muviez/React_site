@@ -58,7 +58,7 @@ class Restore extends React.Component {
             message: (
                 <div>
                     <div>
-                        The letter has been successfully sent to your e-mail
+                        Сообщение успешно отправлено на вашу почту
                     </div>
                 </div>
             ),

@@ -49,7 +49,7 @@ class Step2 extends React.Component{
     render(){
         return (
             <div>
-                <h5 className="info-text">Step 2</h5>
+                <h5 className="info-text">Шаг 2</h5>
                 <Row className="justify-content-center">
                     <Col xs={12} lg={4}>
                         <Select

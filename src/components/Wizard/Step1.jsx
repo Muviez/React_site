@@ -86,7 +86,7 @@ class Step1 extends React.Component{
     render(){
         return (
             <div>
-                <h5 className="info-text">Step 1</h5>
+                <h5 className="info-text">Шаг 1</h5>
                 <Row className="justify-content-center">
                     <Col xs={12} lg={7} sm={10}>
                         <InputGroup size="lg" className={(this.state.firstnameState ? this.state.firstnameState:"")}>
@@ -96,7 +96,7 @@ class Step1 extends React.Component{
                             <Input
                                     defaultValue={this.state.firstname}
                                     type="text"
-                                    placeholder="First Name (required)"
+                                    placeholder="Имя (Обязательно поле)"
                                     name="firstname"
                                     onFocus={(e) => this.setState({firstnameFocus: true})}
                                     onBlur={(e) => this.setState({firstnameFocus: false})}
@@ -110,7 +110,7 @@ class Step1 extends React.Component{
                             <Input
                                     defaultValue={this.state.lastname}
                                     type="text"
-                                    placeholder="Last Name (required)"
+                                    placeholder="Фамилия (Обязательно поле)"
                                     name="lastname"
                                     onFocus={(e) => this.setState({lastnameFocus: true})} 
                                     onBlur={(e) => this.setState({lastnameFocus: false})} 
@@ -126,7 +126,7 @@ class Step1 extends React.Component{
                             <Input
                                     defaultValue={this.state.email}
                                     type="email"
-                                    placeholder="Email (required)"
+                                    placeholder="Email (Обязательно поле)"
                                     name="email"
                                     onFocus={(e) => this.setState({emailFocus: true})}
                                     onBlur={(e)=> this.setState({emailFocus: false})}

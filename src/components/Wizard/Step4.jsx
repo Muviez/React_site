@@ -34,25 +34,25 @@ class Step4 extends React.Component{
     render(){
         return (
             <div>
-                <h5 className="info-text"> Step 4 </h5>
+                <h5 className="info-text"> Шаг 4 </h5>
                 <Row className="justify-content-center">
                     <Col xs={12} lg={10}>
                         <Row className="justify-content-center">
                             <Col xs={6} sm={4}>
                                 <IconCheckbox
                                     name="job"
-                                    value="Anonymous order"
+                                    value="Анонимный заказ"
                                     icon="now-ui-icons design-2_ruler-pencil"
-                                    title="Anonymous order"
+                                    title="Анонимный заказ"
                                 />
                             </Col>
                             <Col xs={6} sm={4}>
                                 <div className={"choice" + (this.state.checkedPersDataState)} onClick={() => this.setCheck()}>
-                                    <input type="checkbox" name="job" value="Consent to the processing of personal data" ref="checkbox"/>
+                                    <input type="checkbox" name="job" value="Согласие на обработку персональных данных" ref="checkbox"/>
                                     <div className="icon">
                                         <i className="now-ui-icons business_bulb-63"></i>
                                     </div>
-                                    <h6>Consent to the processing of personal data</h6>
+                                    <h6>Согласие на обработку персональных данных</h6>
                                 </div>
                             </Col>
                         </Row>

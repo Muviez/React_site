@@ -29,7 +29,7 @@ function TabMenu(props) {
                     onClick={fstTab}
                 >
                     <i className="now-ui-icons objects_umbrella-13"></i>
-                    Home
+                    Главная
                 </NavLink>
             </NavItem>
             <NavItem className="mb-tab">
@@ -38,7 +38,7 @@ function TabMenu(props) {
                     onClick={secTab}
                 >
                     <i className="now-ui-icons shopping_shop"></i>
-                    Messages
+                    Сообщения
                 </NavLink>
             </NavItem>
             <NavItem className="mb-tab">
@@ -47,7 +47,7 @@ function TabMenu(props) {
                     onClick={thrTab}
                 >
                     <i className="now-ui-icons ui-2_settings-90"></i>
-                    Settings
+                    Настройки
                 </NavLink>
             </NavItem>
         </Nav>

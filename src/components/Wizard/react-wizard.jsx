@@ -203,11 +203,11 @@ class ReactWizard extends React.Component{
                     </CardBody>
                     <CardFooter>
                         <div style={{float: "right"}}>
-                            {this.state.nextButton ? (<Button className={"btn-next" + (this.props.nextButtonClasses !== undefined ? (" "+this.props.nextButtonClasses):"")} onClick={() => this.nextButtonClick()}>{this.props.nextButtonText !== undefined ? this.props.nextButtonText:"Next"}</Button>):null}
+                            {this.state.nextButton ? (<Button className={"btn-next" + (this.props.nextButtonClasses !== undefined ? (" "+this.props.nextButtonClasses):"")} onClick={() => this.nextButtonClick()}>{this.props.nextButtonText !== undefined ? this.props.nextButtonText:"Далее"}</Button>):null}
                             {this.state.finishButton ? (<Button className={"btn-finish" + (this.finishButtonClasses !== undefined ? (" "+this.props.finishButtonClasses):"")} onClick={() => this.finishButtonClick()}>{this.props.finishButtonText !== undefined ? this.props.finishButtonText:"Finish"}</Button>):null}
                         </div>
                         <div style={{float: "left"}}>
-                            {this.state.previousButton ? (<Button className={"btn-previous" + (this.props.previousButtonClasses !== undefined ? (" "+this.props.previousButtonClasses):"")} onClick={() => this.previousButtonClick()}>{this.props.previousButtonText !== undefined ? this.props.previousButtonText:"Previous"}</Button>):null}
+                            {this.state.previousButton ? (<Button className={"btn-previous" + (this.props.previousButtonClasses !== undefined ? (" "+this.props.previousButtonClasses):"")} onClick={() => this.previousButtonClick()}>{this.props.previousButtonText !== undefined ? this.props.previousButtonText:"Назад"}</Button>):null}
                         </div>
                         <div className="clearfix">
 

@@ -96,7 +96,7 @@ class ResetPassword extends Component {
 
     render() {
         return (
-            <div className='content'>
+            <div className="reset-width">
                 <NotificationAlert ref="notificationAlert"/>
                 <div className='container'>
                     <div className='row justify-content-center'>

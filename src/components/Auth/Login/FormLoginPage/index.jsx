@@ -51,7 +51,7 @@ class Login extends Component {
     loginPassword(e){
         let State = this.state.State;
         this.state.login.password = e.target.value;
-        if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(e.target.value))
+        if(/(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/.test(e.target.value))
             State["passwordState"] = "has-success";
         else
             State["passwordState"] = "has-danger";
@@ -113,7 +113,7 @@ class Login extends Component {
                                     </div>
                                     <input 
                                         type="password" 
-                                        placeholder="Password" 
+                                        placeholder="Пароль" 
                                         className="form-control"
                                         onChange={(e) => this.loginPassword(e)}
                                     />
@@ -122,12 +122,12 @@ class Login extends Component {
                                 <button type='submit' className='btn-round btn btn-primary btn-lg btn-block btn-login'>Войти</button>
                                 <div className="pull-left">
                                     <h6>
-                                        <Link to="/register" className="link footer-link">Create Account</Link>
+                                        <Link to="/register" className="link footer-link">Создать аккаунт</Link>
                                     </h6>
                                 </div>
                                 <div className="pull-right">
                                     <h6>
-                                        <a href='#' className="link footer-link" data-toggle="modal" data-target="#exampleModal">Forgot password?</a>
+                                        <a href='#' className="link footer-link" data-toggle="modal" data-target="#exampleModal">Забыли пароль?</a>
                                     </h6>
                                 </div>
                             </form>

@@ -90,13 +90,13 @@ class EditForm extends Component {
         return(
             <form>
                 <FormInputs
-                    ncols = {["col-md-3 pr-1" , "col-md-4 px-1" , "col-md-5 pl-1"]}
+                    ncols = {["col-md-4" , "col-md-4" , "col-md-4"]}
                     proprieties = {[
                         {
-                            label : "Username",
+                            label : "Имя пользователя",
                             inputProps : {
                                 type : "text",
-                                placeholder: "Username",
+                                placeholder: "Имя пользователя",
                                 id: "login",
                                 defaultValue: this.props.profileData.login,
                                 className: this.state.State.loginState,
@@ -104,7 +104,7 @@ class EditForm extends Component {
                             }
                         },
                         {
-                            label : "Email address",
+                            label : "Email адрес",
                             inputProps : {
                                 type : "email",
                                 placeholder: "Email",
@@ -114,10 +114,10 @@ class EditForm extends Component {
                             }
                         },
                         {
-                            label : "Phone",
+                            label : "Телефон",
                             inputProps : {
                                 type : "text",
-                                placeholder: "Phone",
+                                placeholder: "Телефон",
                                 id: "phone",
                                 defaultValue: this.props.profileData.phone,
                                 onChange: (e) => this.phoneUser(e)
@@ -127,23 +127,23 @@ class EditForm extends Component {
                 />
 
                 <FormInputs
-                    ncols = {["col-md-6 pr-1" , "col-md-6 pl-1"]}
+                    ncols = {["col-md-6" , "col-md-6"]}
                     proprieties = {[
                         {
-                            label : "First Name",
+                            label : "Имя",
                             inputProps : {
                                 type : "text",
-                                placeholder: "First Name",
+                                placeholder: "Имя",
                                 id: "firstName",
                                 defaultValue: this.props.profileData.firstName,
                                 onChange: (e) => this.firstNameUser(e)
                             }
                         },
                         {
-                            label : "Last Name",
+                            label : "Фамилия",
                             inputProps : {
                                 type : "text",
-                                placeholder: "Last Name",
+                                placeholder: "Фамилия",
                                 id: "lastName",
                                 defaultValue: this.props.profileData.lastName,
                                 onChange: (e) => this.lastNameUser(e)
@@ -155,10 +155,10 @@ class EditForm extends Component {
                     ncols = {["col-md-12"]}
                     proprieties = {[
                         {
-                            label : "Address",
+                            label : "Адрес",
                             inputProps : {
                                 type : "text",
-                                placeholder: "Home Address",
+                                placeholder: "Адрес",
                                 id: "address",
                                 defaultValue: this.props.profileData.address,
                                 onChange: (e) => this.addressUser(e)
@@ -168,12 +168,11 @@ class EditForm extends Component {
                 />
                 <Button
                     className="btn btn-primary"
-                    fill
                     type="button"
                     onClick={this.SaveProfFunc}
                     
                 >
-                    Save Profile
+                    Сохранить изменения
                 </Button>
             </form>
         );

@@ -47,7 +47,7 @@ class Register extends Component {
     registerPassword(e){
         let State = this.state.State;
         this.state.register.password = e.target.value;
-        if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(e.target.value)) 
+        if(/(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/.test(e.target.value))  // /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[a-z]).*$/.test(e.target.value)
             State["passwordState"] = "has-success";
         else
             State["passwordState"] = "has-danger";
@@ -118,7 +118,7 @@ class Register extends Component {
             message: (
                 <div>
                     <div>
-                        Welcome to <b>LENDLEASE</b> - registration is successful.
+                        Добропожаловать в <b>LENDLEASE</b> - регистрация прошла успешно.
                     </div>
                 </div>
             ),
@@ -140,8 +140,8 @@ class Register extends Component {
                                 <i className="now-ui-icons media-2_sound-wave"></i>
                             </div>
                             <div className="description">
-                                <h5 className="info-title">Marketing</h5>
-                                <p className="description">We've created the marketing campaign of the website. It was a very interesting collaboration.</p>
+                                <h5 className="info-title">Маркетинг</h5>
+                                <p className="description">Мы создали маркетинговую кампанию сайта. Это было очень интересное сотрудничество.</p>
                             </div>
                         </div>
                         <div className="info-area info-horizontal">
@@ -149,8 +149,8 @@ class Register extends Component {
                                 <i className="now-ui-icons media-1_button-pause"></i>
                             </div>
                             <div className="description">
-                                <h5 className="info-title">Fully Coded in React 16</h5>
-                                <p className="description">We've developed the website with React 16, HTML5 and CSS3. The client has access to the code using GitHub.</p>
+                                <h5 className="info-title">Полностью создано на React 16</h5>
+                                <p className="description">Мы разработали веб-сайт с помощью React 16, HTML5, CSS3 и Bootstrap 4.</p>
                             </div>
                         </div>
                         <div className="info-area info-horizontal">
@@ -158,15 +158,15 @@ class Register extends Component {
                                 <i className="now-ui-icons users_single-02"></i>
                             </div>
                             <div className="description">
-                                <h5 className="info-title">Built Audience</h5>
-                                <p className="description">There is also a Fully Customizable CMS Admin Dashboard for this product.</p>
+                                <h5 className="info-title">Встроенная доска событий</h5> {/*Built Audience*/}
+                                <p className="description">Для этого продукта есть полностью настраиваемая доска напоминаний.</p> {/*There is also a Fully Customizable CMS Admin Dashboard for this product.*/}
                             </div>
                         </div>
                     </div>
                     <div className="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-4">
                         <div className="card-signup card">
                             <div className="text-center card-header">
-                                <h4 className="card-title">Register</h4>
+                                <h4 className="card-title">Регистрация</h4>
                             </div>
                             <div className="card-body">
                                 <form name="formReg" onSubmit={this.registerSubmit}>
@@ -176,7 +176,7 @@ class Register extends Component {
                                         </div>
                                         <input
                                             type="text"
-                                            placeholder="Username"
+                                            placeholder="Имя пользователя"
                                             className="form-control"
                                             onChange={(e) => this.registerUsername(e)}
                                         />
@@ -198,7 +198,7 @@ class Register extends Component {
                                         </div>
                                         <input 
                                             type="password"
-                                            placeholder="Password"
+                                            placeholder="Пароль"
                                             className="form-control"
                                             onChange={(e) => this.registerPassword(e)}
                                         />
@@ -209,7 +209,7 @@ class Register extends Component {
                                         </div>
                                         <input 
                                             type="password" 
-                                            placeholder="Confirm password" 
+                                            placeholder="Повторите пароль" 
                                             className="form-control"
                                             onChange={(e) => this.registerConfirm(e)}
                                         />
@@ -219,12 +219,12 @@ class Register extends Component {
                                         <label className="form-check-label">
                                             <input type="checkbox" className="form-check-input" value="on" />
                                             <span className="form-check-sign"></span>
-                                            <div>I agree to the <a href="#something">terms and conditions</a>.</div>
+                                            <div>Я согласен на обработку <a href="#something">персональных данных</a>.</div>
                                         </label>
                                     </div>
                                     <h6 className="text-justify">{this.state.State.error}</h6>
                                     <div className="text-center card-footer">
-                                        <button type='submit' className="btn-round btn btn-primary btn-lg">Get Started</button>
+                                        <button type='submit' className="btn-round btn btn-primary btn-lg">Зарегистрироваться</button>
                                     </div>
                                 </form>
                             </div>

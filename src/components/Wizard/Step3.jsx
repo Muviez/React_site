@@ -4,6 +4,7 @@ import {
     FormGroup, Label, Input,
     InputGroup
 } from 'reactstrap';
+import Datetime from 'react-datetime';
 
 class Step3 extends React.Component{
     constructor(props){
@@ -12,15 +13,19 @@ class Step3 extends React.Component{
             address: "",
             city: "",
             country: "",
-            date: "",
-            time: "",
+            datetime: "",
             addressState: "",
             cityState: "",
             countryState: "",
-            dateState: "",
-            timeState: ""
+            dateTimeState: "",
         };
         this.cityChange = this.cityChange.bind(this);
+    }
+    changeDate = () => {
+        let d = this.state;
+        d.datetime = document.getElementById("datatimepickerorder").value;
+        this.setState({ d });
+        this.dateTimeChange();
     }
     addressChange(e){
         this.setState({
@@ -64,36 +69,19 @@ class Step3 extends React.Component{
             });
         }
     }
-    dateChange(e){
-        this.setState({
-            date: e.target.value
-        });
-        if(/([0-2]\d|3[01])\.(0\d|1[012])\.(\d{4})/.test(e.target.value)){
+    dateTimeChange(e){
+        if(/^([1-9]|([012][0-9])|(3[01])).([0]{0,1}[1-9]|1[012]).\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$/.test(this.state.datetime)){
             this.setState({
-                dateState: " has-success"
+                dateTimeState: " has-success"
             });
         } else {
             this.setState({
-                dateState: " has-danger"
-            });
-        }
-    }
-    timeChange(e){// (([0-1]\\d)|(2[0-3])):([0-5]\\d):([0-5]\\d)
-        this.setState({
-            time: e.target.value
-        });
-        if(/^(?!.*777.*$)([0-9]{2}[:]{1}[0-9]{2})$/.test(e.target.value)){
-            this.setState({
-                timeState: " has-success"
-            });
-        } else {
-            this.setState({
-                timeState: " has-danger"
+                dateTimeState: " has-danger"
             });
         }
     }
     isValidated(){
-        if(this.state.addressState !== " has-success" || this.state.cityState !== " has-success" || this.state.countryState !== " has-success" || this.state.dateState !== " has-success" || this.state.timeState !== " has-success"){
+        if(this.state.addressState !== " has-success" || this.state.cityState !== " has-success" || this.state.countryState !== " has-success" || this.state.dateTimeState !== " has-success"){
             if(this.state.addressState !== " has-success")
                 this.setState({ addressState: " has-danger" });
 
@@ -103,65 +91,55 @@ class Step3 extends React.Component{
             if(this.state.countryState !== " has-success")
                 this.setState({ countryState: " has-danger" });
 
-            if(this.state.dateState !== " has-success")
-                this.setState({ dateState: " has-danger" });
-
-            if(this.state.timeState !== " has-success")
-                this.setState({ timeState: " has-danger" });
+            if(this.state.dateTimeState !== " has-success")
+                this.setState({ dateTimeState: " has-danger" });
 
             return false;
         }
         return true;
     }
+
     render(){
         return (
             <div className="Step_3">
-                <h5 className="info-text">Step 2</h5>
+                <h5 className="info-text">Шаг 3</h5>
                 <Row className="justify-content-center">
-                    <Col xs={6} sm={5}>
-                        <Label>City</Label>
-                        <InputGroup size="md" className={(this.state.cityState ? this.state.cityState:"")}>
-                            <div className="input-group-addon">
-                                <i className="now-ui-icons location_world"></i>
-                            </div>
-                            <Input defaultValue={this.state.city} type="text" placeholder="City (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.cityChange(e)}/>
-                        </InputGroup>
+                    <Col xs={12} sm={10}>
+                        <Datetime
+                            className={this.state.dateTimeState ? this.state.dateTimeState:""}
+                            dateFormat="DD-MM-YYYY"
+                            timeFormat="HH:mm"
+                            locale="ru"
+                            inputProps={{placeholder:" Дата и Время (Обязательно поле) ", id: "datatimepickerorder"}}
+                            onBlur={() => this.changeDate()}
+                            value={this.state.datetime}
+                        />
                     </Col>
-                    <Col xs={6} sm={5}>
-                        <Label>Country</Label>
+                    <Col xs={12} sm={5}>
+                        <Label>Страна</Label>
                         <InputGroup size="md" className={(this.state.countryState ? this.state.countryState:"")}>
                             <div className="input-group-addon">
                                 <i className="now-ui-icons location_world"></i>
                             </div>
-                            <Input defaultValue={this.state.сountry} type="text" placeholder="Country (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.countryChange(e)}/>
+                            <Input defaultValue={this.state.сountry} type="text" placeholder="Страна (Обязательно поле)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.countryChange(e)}/>
                         </InputGroup>
-                    </Col>        
+                    </Col>
+                    <Col xs={12} sm={5}>
+                        <Label>Город</Label>
+                        <InputGroup size="md" className={(this.state.cityState ? this.state.cityState:"")}>
+                            <div className="input-group-addon">
+                                <i className="now-ui-icons location_world"></i>
+                            </div>
+                            <Input defaultValue={this.state.city} type="text" placeholder="Город (Обязательно поле)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.cityChange(e)}/>
+                        </InputGroup>
+                    </Col>
                     <Col xs={12} sm={10}>
-                        <Label>Address</Label>
+                        <Label>Адрес</Label>
                         <InputGroup size="md" className={(this.state.addressState ? this.state.addressState:"")}>
                             <div className="input-group-addon">
                                 <i className="now-ui-icons location_pin"></i>
                             </div>
-                            <Input defaultValue={this.state.address} type="text" placeholder="Address (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.addressChange(e)}/>
-                        </InputGroup>
-                    </Col>
-
-                    <Col xs={6} sm={5}>
-                        <Label>Date</Label>
-                        <InputGroup size="md" className={(this.state.dateState ? this.state.dateState:"")}>
-                            <div className="input-group-addon">
-                                <i className="now-ui-icons ui-1_calendar-60"></i>
-                            </div>
-                            <Input defaultValue={this.state.date} type="text" placeholder="12.12.2018 (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.dateChange(e)}/>
-                        </InputGroup>
-                    </Col>
-                    <Col xs={6} sm={5}>
-                        <Label>Time</Label>
-                        <InputGroup size="md" className={(this.state.timeState ? this.state.timeState:"")}>
-                            <div className="input-group-addon">
-                                <i className="now-ui-icons tech_watch-time"></i>
-                            </div>
-                            <Input defaultValue={this.state.time} type="text" placeholder="00:00 (required)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.timeChange(e)}/>
+                            <Input defaultValue={this.state.address} type="text" placeholder="Адрес (Обязательно поле)" name="firstname" onFocus={(e) => this.setState({firstnameFocus: true})} onBlur={(e) => this.setState({firstnameFocus: false})} onChange={(e) => this.addressChange(e)}/>
                         </InputGroup>
                     </Col>
                 </Row>

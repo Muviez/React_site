@@ -9,12 +9,12 @@ class Step5 extends Component{
         return (
             <div className="wizard-step">
                 <h2 className="text-center text-space">
-                    Yuhuuu!
+                    Вы дошли до конца!
                     <br />
-                    <small> Click on "<b>Finish</b>" to join our community</small>
+                    <small> Нажмите "<b>Готово</b>" чтобы завершить заказ</small>
                 </h2>
                 <div className="wizard-finish-button">
-                    <Link to="/" className="btn btn-secondary close-button">Finish</Link>
+                    <Link to="/" className="btn btn-secondary close-button">Готово</Link>
                 </div>
             </div>
         );

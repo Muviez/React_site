@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { frequencyOfReminder, reasonSelect, whomSelect } from "../../arrays/selectArrays.js";
 import { EditCard, DeleteCard } from './../../actions/ReminderCard.js'
 import { AddCardId } from './../../actions/CardId.js'
-import { DeleteGift } from '../../actions/Gift.js'
+import Gift from './Gift.jsx'
 
 class Card extends React.Component {
     constructor(props) {
@@ -96,7 +96,7 @@ class Card extends React.Component {
     renderDisplay = () => {
         const cID = this.props.id;
         return(
-            <div className="col-lg-4 mb-4">
+            <div key={this.props.id} className="col-lg-4 mb-4">
                 
                 <div className="card card-blog" data-background-color="orange">
                     <div className="card-body">
@@ -119,18 +119,13 @@ class Card extends React.Component {
                         {this.props.gift.map(function(obj){
                             if(obj.cid === cID) {
                                 return (
-                                    <div key={obj.id ? obj.id : ""}>
-                                        <div className="info">
-                                            <div className="description">
-                                                <h4 className="info-title">Подарок {obj.id ? obj.id : ""}</h4>
-                                                <p>Категория: {obj.category ? obj.category : ""}</p>
-                                                <p>Предмет: {obj.item ? obj.item : ""}</p>
-                                                <p>Количество: {obj.count ? obj.count : ""}</p>
-    
-                                            </div>
-                                        </div>
-                                        <hr />
-                                    </div>
+                                    <Gift
+                                        key={obj.id}
+                                        id={obj.id}
+                                        category={obj.category}
+                                        item={obj.item}
+                                        count={obj.count}
+                                    />
                                 );
                             }
                             else
@@ -152,7 +147,7 @@ class Card extends React.Component {
                         
                         
                         <div className="card-footer text-center">
-                            <button className="btn btn-default btn-round" onClick={() => this.props.AddCardId(this.props.id)} data-toggle="modal" data-target="#exampleModal2">Add Gift</button>
+                            <button className="btn btn-default btn-round" onClick={() => this.props.AddCardId(this.props.id)} data-toggle="modal" data-target="#exampleModal2">Добавить подарок</button>
                         </div>
                     </div>
                 </div>
@@ -243,7 +238,7 @@ function mapStateToProps(state){
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Object.assign({}, { EditCard: EditCard }, { DeleteCard: DeleteCard }, { AddCardId: AddCardId }, { DeleteGift: DeleteGift }), dispatch)
+    return bindActionCreators(Object.assign({}, { EditCard: EditCard }, { DeleteCard: DeleteCard }, { AddCardId: AddCardId }), dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

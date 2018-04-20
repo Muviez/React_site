@@ -177,7 +177,7 @@ class ReminderEditor extends React.Component {
                         className="btn btn-primary" 
                         type="button"
                         onClick={this.AddCardFunc}
-                    >Add card</button>
+                    >Добавить карточку</button>
                 </div>
             </div>
         );

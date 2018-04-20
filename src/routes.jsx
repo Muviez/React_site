@@ -2,7 +2,8 @@ import React from 'react';
 import { 
     BrowserRouter as Router,
     Route,
-    Redirect
+    Redirect,
+    Switch
 } from 'react-router-dom';
 
 import Layout from './Layout.jsx';
@@ -57,18 +58,30 @@ const Rootrouter = () => {
         />
     );
 
+    const NoMatch = ({ location }) => (
+        <div className="error-404">
+            <h2>404 ERROR</h2>
+            <h3>
+                No match for <em>{location.pathname}</em>
+            </h3>
+        </div>
+      );
+
     return (
         <Router>
             <Layout>
-                <Route exact path='/' component={Home} />
-                <IsAuth path='/register' component={Register} />
-                <IsAuth path='/login' component={Login} />
-                <IsAuth path='/reset' component={Reset} />
-                <IsAuth path='/reset-password' component={ResetPassword} />
-                <IsAuth path='/confirm' component={Confirm} />
-                <IsAuth path='/one-time-order' component={Wizard} />
-                <IsAuth path='/profile' component={User} />
-                <IsAuth path='/board' component={Board} />
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <IsAuth path='/register' component={Register} />
+                    <IsAuth path='/login' component={Login} />
+                    <IsAuth path='/reset' component={Reset} />
+                    <IsAuth path='/reset-password' component={ResetPassword} />
+                    {/* <IsAuth path='/confirm' component={Confirm} /> */}
+                    <IsAuth path='/one-time-order' component={Wizard} />
+                    <IsAuth path='/profile' component={User} />
+                    <IsAuth path='/board' component={Board} />
+                    <Route component={NoMatch} />
+                </Switch>
             </Layout>
         </Router>
     );

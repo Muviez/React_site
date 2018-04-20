@@ -7,7 +7,7 @@ const initialState = {
         phone: "+79112792335",
         firstName: "Andre",
         lastName: "Gor",
-        address: "Mamka papka 229"
+        address: "Rustaveli d58 k1"
     }
 }
 

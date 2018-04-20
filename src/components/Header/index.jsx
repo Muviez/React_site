@@ -26,7 +26,7 @@ class Header extends Component {
             <li className="nav-item">
                 <a onClick={LogoutFunc} className="nav-link">
                     <i className="now-ui-icons sport_user-run"></i>
-                    Logout
+                    Выйти
                 </a>
             </li>
         </ul>
@@ -34,9 +34,9 @@ class Header extends Component {
 
     const guestLinks = (
         <ul className="ml-auto navbar-nav">
-            <MenuItem content="One Time Order" link="one-time-order" icon="design_bullet-list-67"  />
-            <MenuItem content="Register" link="register" icon="tech_mobile" />
-            <MenuItem content="Login" link="login" icon="users_circle-08"  />
+            <MenuItem content="Одноразовый заказ" link="one-time-order" icon="design_bullet-list-67"  />
+            <MenuItem content="Регистрация" link="register" icon="tech_mobile" />
+            <MenuItem content="Вход" link="login" icon="users_circle-08"  />
         </ul>
     );
 
