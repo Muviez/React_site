@@ -3,6 +3,7 @@ import Select from 'react-select';
 import Datetime from 'react-datetime';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import SweetAlert from "react-bootstrap-sweetalert";
 
 import { frequencyOfReminder, reasonSelect, whomSelect } from "../../arrays/selectArrays.js";
 import { EditCard, DeleteCard } from './../../actions/ReminderCard.js'
@@ -27,6 +28,35 @@ class Card extends React.Component {
             }
         }
     }
+
+    selectRus = () => {
+        switch(this.props.reason) {
+            case "newYear":
+                return "Новый год"
+            case "birthday":
+                return "День Рождения"
+            case "anniversary":
+                return "Юбилей"
+            case "valentineDay":
+                return "14 Февраля"
+            case "womenDay":
+                return "8 Марта"
+            case "defenderDay":
+                return "23 Февраля"
+            case "wedding":
+                return "Свадьба"
+            case "knowledgeDay":
+                return "1 Сентября"
+            case "springDay":
+                return "1 Мая"
+            case "victoryDay":
+                return "9 Мая"
+            case "yearly":
+                return "Годовщина"
+            default:
+                return "";
+        }
+    }
     
     editingCard = () => {
         this.setState({ editing: true });
@@ -39,10 +69,6 @@ class Card extends React.Component {
     saveCard = () => {
         this.setState({ editing: false });
         this.props.EditCard(this.props.id, this.state.ReminderInputs);
-    }
-
-    deleteCard = () => {
-        this.props.DeleteCard(this.props.id);
     }
 
     changeTitle = (e) => {
@@ -92,20 +118,54 @@ class Card extends React.Component {
                 break;
         }
     }
+
+    warningOnDelete() {
+        this.setState({
+            alert: (
+            <SweetAlert
+                warning
+                style={{ display: "block" }}
+                title="Are you sure?"
+                onConfirm={() => this.successDeleteCard()}
+                onCancel={() => this.hideAlert()}
+                confirmBtnBsStyle="info"
+                cancelBtnBsStyle="danger"
+                confirmBtnText="Yes, delete it!"
+                cancelBtnText="Cancel"
+                showCancel
+            >
+                You will not be able to recover this imaginary file!
+            </SweetAlert>
+            )
+        });
+    }
+
+    successDeleteCard() {
+        this.props.DeleteCard(this.props.id);
+        this.setState({
+            alert: null
+        });
+    }
+
+    hideAlert() {
+        this.setState({
+          alert: null
+        });
+    }
  
     renderDisplay = () => {
         const cID = this.props.id;
         return(
             <div key={this.props.id} className="col-lg-4 mb-4">
-                
+                {this.state.alert}
                 <div className="card card-blog" data-background-color="orange">
                     <div className="card-body">
                         <h6 className="card-category text-success">
-                            {this.props.reason}
+                            {this.selectRus()}
                         </h6>
 
                         <button className="edit-card-btn" onClick={this.editingCard}><i className="now-ui-icons ui-1_settings-gear-63"></i></button>
-                        <button className="remove-card-btn" onClick={this.deleteCard}><i className="now-ui-icons ui-1_simple-remove"></i></button>
+                        <button className="remove-card-btn" onClick={() => this.warningOnDelete()}><i className="now-ui-icons ui-1_simple-remove"></i></button>
 
                         <h5 className="card-title">
                             <a href="#pablo">{this.props.title}</a>
@@ -132,20 +192,6 @@ class Card extends React.Component {
                                 return null;
                         })}
 
-                                    {/* <div className="info">
-                                        <div className="description">
-                                            <h4 className="info-title">Подарок {this.props.present.id}</h4>
-                                            <p>Категория: {this.props.present.category}</p>
-                                            <p>Предмет: {this.props.present.item}</p>
-                                            <p>Количество: {this.props.present.count}</p>
-
-                                        </div>
-                                    </div>
-                                    <hr /> */}
-
-                        
-                        
-                        
                         <div className="card-footer text-center">
                             <button className="btn btn-default btn-round" onClick={() => this.props.AddCardId(this.props.id)} data-toggle="modal" data-target="#exampleModal2">Добавить подарок</button>
                         </div>

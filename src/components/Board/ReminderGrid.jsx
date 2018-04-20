@@ -8,16 +8,48 @@ import GiftModal from './GiftModal.jsx';
 class ReminderGrid extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            temp: ""
+        }
     }
 
+    find = (e) => {
+        this.setState({
+            temp: e.target.value
+        })     
+    }
+    
     
     render() {
-        return (
-            <div className="container">
-                <div className="row">
-                    {this.props.reminder.map(function(key, obj){
+        let temp = this.state.temp.toLowerCase();
 
+        const defaultDisplay = () => {
+            return(
+                
+                    this.props.reminder.map(function(key, obj){
+                        return (
+                            <Card 
+                                key={key.id}
+                                id={key.id}
+                                title={key.title}
+                                datetime={key.datetime}
+                                reason={key.reason}
+                                towhom={key.towhom}
+                                frequency={key.frequency}
+                                remindForWeek={key.remindForWeek}
+                                remindForMonth={key.remindForMonth}
+                                remindForThreeMonth={key.remindForThreeMonth}
+                            />
+                        );
+                    })
+                
+            );
+        }
+
+        const findingDisplay = () => {
+            return (
+                this.props.reminder.map(function(key, obj){
+                        if(key.title.toLowerCase().includes(temp)) 
                             return (
                                 <Card 
                                     key={key.id}
@@ -32,7 +64,42 @@ class ReminderGrid extends React.Component {
                                     remindForThreeMonth={key.remindForThreeMonth}
                                 />
                             );
-                        })}
+                        else return null;
+                    })
+            );
+        }
+
+        return (
+            <div className="container">
+                <input 
+                    type="text" 
+                    placeholder="Text" 
+                    className="form-control"
+                    onChange={(e) => this.find(e)}
+                />
+                <div className="row">
+                {console.log(temp)}
+                {temp ? findingDisplay() : defaultDisplay()}
+
+                    {/* {this.props.reminder.map(function(key, obj){
+                            if(key.title.includes(temp)) 
+                                return (
+                                    <Card 
+                                        key={key.id}
+                                        id={key.id}
+                                        title={key.title}
+                                        datetime={key.datetime}
+                                        reason={key.reason}
+                                        towhom={key.towhom}
+                                        frequency={key.frequency}
+                                        remindForWeek={key.remindForWeek}
+                                        remindForMonth={key.remindForMonth}
+                                        remindForThreeMonth={key.remindForThreeMonth}
+                                    />
+                                );
+                            else
+                                return null;
+                        })} */}
                         <GiftModal cardId={this.props.cardId.activeCardId} />
                 </div>
             </div>

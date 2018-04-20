@@ -361,7 +361,9 @@ body {
   flex-direction: column;
 }
 
-
+[data-background-color]:not([data-background-color=gray]) h2 {
+  color: #000000 !important;
+}
 
 @media only screen and (max-width: 1200px) {
   .layout .content_button .oneOrder {
