@@ -25,7 +25,6 @@ class ReminderGrid extends React.Component {
 
         const defaultDisplay = () => {
             return(
-                
                     this.props.reminder.map(function(key, obj){
                         return (
                             <Card 
@@ -78,29 +77,8 @@ class ReminderGrid extends React.Component {
                     onChange={(e) => this.find(e)}
                 />
                 <div className="row">
-                {console.log(temp)}
-                {temp ? findingDisplay() : defaultDisplay()}
-
-                    {/* {this.props.reminder.map(function(key, obj){
-                            if(key.title.includes(temp)) 
-                                return (
-                                    <Card 
-                                        key={key.id}
-                                        id={key.id}
-                                        title={key.title}
-                                        datetime={key.datetime}
-                                        reason={key.reason}
-                                        towhom={key.towhom}
-                                        frequency={key.frequency}
-                                        remindForWeek={key.remindForWeek}
-                                        remindForMonth={key.remindForMonth}
-                                        remindForThreeMonth={key.remindForThreeMonth}
-                                    />
-                                );
-                            else
-                                return null;
-                        })} */}
-                        <GiftModal cardId={this.props.cardId.activeCardId} />
+                    {temp ? findingDisplay() : defaultDisplay()}
+                    <GiftModal cardId={this.props.cardId.activeCardId} />
                 </div>
             </div>
         );

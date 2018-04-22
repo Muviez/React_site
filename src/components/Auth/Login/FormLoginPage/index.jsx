@@ -81,6 +81,10 @@ class Login extends Component {
             .catch(err => {
                 if(err.response.data.message === "INVALID_CREDENTIALS")
                     State["error"] = "Неверный логин или пароль";
+                else
+                    State["error"] = "Ошибка";
+                State["loginEmailState"] = null;
+                State["passwordState"] = null;
                 this.setState({State});
             })
         }

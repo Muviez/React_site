@@ -1,3 +1,14 @@
+const initialState = [
+    {
+        id: 1, 
+        category: "flowers", 
+        item: "rose", 
+        count: 1, 
+        cid: 1
+    }
+]
+
+
 function funcGiftReducer (state = {}, action) {
     switch(action.type) {
         case 'ADD_GIFT':
@@ -13,7 +24,7 @@ function funcGiftReducer (state = {}, action) {
     }
 }
 
-export default function giftReducer(state = [{id: 1, category: "flowers", item: "rose", count: 1, cid: 1}], action) {
+export default function giftReducer(state = initialState, action) {
     switch(action.type) {
         case 'ADD_GIFT':
             return [...state, funcGiftReducer(undefined, action)];
