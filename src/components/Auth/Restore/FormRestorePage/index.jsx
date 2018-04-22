@@ -40,8 +40,8 @@ class Restore extends React.Component {
         if(State["emailState"] === "has-success") {
             restore(userData)
             .then(res => {
-                console.log(res);
                 this.notify();
+                $('.close').click();
             })
             .catch(err => {
                 if(err.response.data.response_code === "NO_SUCH_EMAIL")

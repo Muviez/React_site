@@ -50,7 +50,7 @@ class GiftModal extends React.Component {
             data.count = this.state.selectThree.value;
             data.cid = this.props.cardId;
             this.props.AddGift(data)
-            this.setState({ selectOne : null, selectTwo : null, selectThree : null })
+            this.setState({ selectOne : null, selectTwo : null, selectThree : null, disSelectTwo: false, disSelectThree: false })
             $('.close').click();
         }
     }

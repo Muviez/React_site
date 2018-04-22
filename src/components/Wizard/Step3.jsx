@@ -96,7 +96,12 @@ class Step3 extends React.Component{
 
             return false;
         }
-        return true;
+        let data = new Object();
+        data.address = this.state.address;
+        data.city = this.state.city;
+        data.country = this.state.country;
+        data.datetime = this.state.datetime;
+        return data;
     }
 
     render(){

@@ -50,16 +50,16 @@ class Gift extends React.Component {
             <SweetAlert
                 warning
                 style={{ display: "block" }}
-                title="Are you sure?"
+                title="Вы уверены?"
                 onConfirm={() => this.successDeleteGift()}
                 onCancel={() => this.hideAlert()}
                 confirmBtnBsStyle="info"
                 cancelBtnBsStyle="danger"
-                confirmBtnText="Yes, delete it!"
-                cancelBtnText="Cancel"
+                confirmBtnText="Да, удалить!"
+                cancelBtnText="Отмена"
                 showCancel
             >
-                You will not be able to recover this imaginary file!
+                Вы не сможете восстановить этот подарок!
             </SweetAlert>
             )
         });

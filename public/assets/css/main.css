@@ -72,7 +72,6 @@ body {
 } 
 .layout .content .mtb-profile {
   margin-top: 100px;
-  margin-bottom: 50px;
   display: flex;
 }
 .layout .content .mtb-profile .card .card-header .mb-tab {
@@ -489,6 +488,7 @@ body {
     margin-top: 20px !important;
   }
 }
+
 @media only screen and (max-width: 480px) {
   .wizard-container .card-wizard .wizard-navigation .moving-tab {
     margin-left: 8% !important;

@@ -31,7 +31,8 @@ class Wizard extends Component{
                             title="Одноразовый заказ"
                             subtitle="Эта информация позволит нам узнать больше о вас."
                             headerTextCenter
-                            nextButtonClasses={"btn-success"}
+                            nextButtonClasses="btn-success"
+                            finishButtonClasses=" "
                         />
                     </Col>
                 </div>

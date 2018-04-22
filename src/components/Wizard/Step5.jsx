@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 // react component used to create charts
 import SweetAlert from 'react-bootstrap-sweetalert';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { Link } from 'react-router-dom';
+import { Step_5 } from '../../actions/WizardStep.js';
+
+// import { Link } from 'react-router-dom';
 
 class Step5 extends Component{
+
+    finishOrder = () => {
+        console.log(this.props.StepFinish())
+    }
+
     render(){
         return (
             <div className="wizard-step">
@@ -14,11 +23,16 @@ class Step5 extends Component{
                     <small> Нажмите "<b>Готово</b>" чтобы завершить заказ</small>
                 </h2>
                 <div className="wizard-finish-button">
-                    <Link to="/" className="btn btn-secondary close-button">Готово</Link>
+                    <button onClick={this.finishOrder} className="btn btn-secondary close-button">Готово</button>
                 </div>
+                {/* <button className="btn-finish"></button> */}
             </div>
         );
     }
 }
 
-export default Step5;
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ StepFinish: Step_5 }, dispatch)
+};
+
+export default connect(null, mapDispatchToProps)(Step5);

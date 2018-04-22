@@ -24,7 +24,11 @@ class Step2 extends React.Component{
         if(this.state.selectOne === null || this.state.selectTwo === null || this.state.selectThree === null){
             return false;
         }
-        return true;
+        let data = new Object();
+        data.category = this.state.selectOne;
+        data.item = this.state.selectTwo.value;
+        data.count = this.state.selectThree.value;
+        return data;
     }
 
     changeSelectOne = (value) => {

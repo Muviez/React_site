@@ -2,8 +2,11 @@ import React from 'react';
 import {
     Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardFooter, Nav, NavItem, NavLink, TabContent, TabPane, Button
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import './react-wizard.css';
+import { Step_1, Step_2, Step_3, Step_4 } from '../../actions/WizardStep.js'
 
 class ReactWizard extends React.Component{
     constructor(props){
@@ -31,7 +34,7 @@ class ReactWizard extends React.Component{
             color: this.props.color !== undefined ? this.props.color:"primary",
             nextButton: (this.props.steps.length > 1 ? true:false),
             previousButton: false,
-            finishButton: (this.props.steps.length === 1 ? true:false),
+            finishButton: this.props.steps.length === 1 ? true : false,
             width: width,
             movingTabStyle: {
                 transition: 'transform 0s'
@@ -56,8 +59,11 @@ class ReactWizard extends React.Component{
             var validationState = true;
             if(key > this.state.currentStep){
                 for(var i = this.state.currentStep ; i < key ; i++){
-                    if( this.refs[this.props.steps[i].stepName].isValidated !== undefined &&
-                        this.refs[this.props.steps[i].stepName].isValidated() === false){
+                    if( 
+                        this.refs[this.props.steps[i].stepName].isValidated !== undefined &&
+                        this.refs[this.props.steps[i].stepName].isValidated() === false
+                        // !this.props.WizSteps[i].Step
+                    ){
                         validationState = false;
                         break;
                     }
@@ -75,12 +81,24 @@ class ReactWizard extends React.Component{
             }
         }
     }
-    nextButtonClick(){
+    nextButtonClick(){ //this.props.WizSteps[this.state.currentStep].Step
         if(
             (this.props.validate &&
             ((this.refs[this.props.steps[this.state.currentStep].stepName].isValidated !== undefined &&
             this.refs[this.props.steps[this.state.currentStep].stepName].isValidated()) ||
             this.refs[this.props.steps[this.state.currentStep].stepName].isValidated === undefined)) || this.props.validate === undefined){
+                if(this.state.currentStep == 0) {
+                    this.props.StepOne(this.refs[this.props.steps[this.state.currentStep].stepName].isValidated())
+                } 
+                else if( this.state.currentStep == 1 ) {
+                    this.props.StepTwo(this.refs[this.props.steps[this.state.currentStep].stepName].isValidated())
+                }
+                else if( this.state.currentStep == 2 ) {
+                    this.props.StepThree(this.refs[this.props.steps[this.state.currentStep].stepName].isValidated())
+                }
+                else if( this.state.currentStep == 3 ) {
+                    this.props.StepFour(this.refs[this.props.steps[this.state.currentStep].stepName].isValidated())
+                }
                 var key = this.state.currentStep + 1;
                 this.setState({
                     currentStep: key,
@@ -90,6 +108,8 @@ class ReactWizard extends React.Component{
                 });
                 this.refreshAnimation(key);
         }
+        // console.log(this.props.StepOne(this.refs[this.props.steps[this.state.currentStep].stepName].isValidated()))
+        // console.log(this.props.WizSteps)
     }
     previousButtonClick(){
         var key = this.state.currentStep - 1;
@@ -178,11 +198,12 @@ class ReactWizard extends React.Component{
                                     })
                                 }
                             </Nav>
+                            {console.log(this.props.WizSteps)}
                             <div className="moving-tab" style={this.state.movingTabStyle}>{this.props.steps[this.state.currentStep].stepName}</div>
                         </div></CardHeader>):null}
                     <CardBody>
                         <TabContent activeTab={this.state.currentStep}>
-                            {
+                            {  
                                 this.props.steps.map((prop,key) => {
                                     return (
                                         <TabPane tabId={key} key={key} className={this.state.currentStep === key ? "fade show":"fade"}>
@@ -204,7 +225,7 @@ class ReactWizard extends React.Component{
                     <CardFooter>
                         <div style={{float: "right"}}>
                             {this.state.nextButton ? (<Button className={"btn-next" + (this.props.nextButtonClasses !== undefined ? (" "+this.props.nextButtonClasses):"")} onClick={() => this.nextButtonClick()}>{this.props.nextButtonText !== undefined ? this.props.nextButtonText:"Далее"}</Button>):null}
-                            {this.state.finishButton ? (<Button className={"btn-finish" + (this.finishButtonClasses !== undefined ? (" "+this.props.finishButtonClasses):"")} onClick={() => this.finishButtonClick()}>{this.props.finishButtonText !== undefined ? this.props.finishButtonText:"Finish"}</Button>):null}
+                            {this.state.finishButton ? (<Button className={"btn-finish" + (this.props.finishButtonClasses !== undefined ? (" "+this.props.finishButtonClasses):"")} onClick={() => this.finishButtonClick()}>{this.props.finishButtonText !== undefined ? this.props.finishButtonText:"Завершить заказ"}</Button>):null}
                         </div>
                         <div style={{float: "left"}}>
                             {this.state.previousButton ? (<Button className={"btn-previous" + (this.props.previousButtonClasses !== undefined ? (" "+this.props.previousButtonClasses):"")} onClick={() => this.previousButtonClick()}>{this.props.previousButtonText !== undefined ? this.props.previousButtonText:"Назад"}</Button>):null}
@@ -230,4 +251,14 @@ ReactWizard.propTypes = {
     validate: PropTypes.bool
 }
 
-export default ReactWizard;
+function mapStateToProps(state){
+    return {
+        WizSteps: state.wizardStep
+    }
+};
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ StepOne: Step_1, StepTwo: Step_2, StepThree: Step_3, StepFour: Step_4 }, dispatch)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReactWizard);

@@ -3,6 +3,11 @@ import {
     Row, Col,
     InputGroup, Input
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Valid_Step_1 } from "../../actions/WizardValidate.js";
+import { Step_1 } from "../../actions/WizardStep.js";
 
 class Step1 extends React.Component{
     constructor(props){
@@ -80,7 +85,11 @@ class Step1 extends React.Component{
             
             return false;
         }
-        return true;
+        let data = new Object();
+        data.firstname = this.state.firstname;
+        data.lastname = this.state.lastname;
+        data.email = this.state.email;
+        return data;
     }
 
     render(){
@@ -139,5 +148,9 @@ class Step1 extends React.Component{
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Object.assign({}, { StepValidate: Valid_Step_1 }, { StepOne: Step_1 }), dispatch)
+};
 
 export default Step1;

@@ -17,9 +17,8 @@ function Footer() {
                     </div>
                     <div className='col-md-auto col-sm-auto col-auto'>
                         <div className="descr_footer" >                                   
-                            © 2018, Дизайн от
-                            <a href="#"> Lendlease</a>. Создано
-                            <a href="#"> BiNodes Team</a>.
+                            &copy; 2018. Создание и дизайн от
+                            <a href="//silentstudio.ru"> Silent Studio</a>.
                         </div>
                     </div>
                 </div>
