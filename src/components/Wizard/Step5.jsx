@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// react component used to create charts
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import { Step_5 } from '../../actions/WizardStep.js';
 
@@ -11,7 +11,8 @@ import { Step_5 } from '../../actions/WizardStep.js';
 class Step5 extends Component{
 
     finishOrder = () => {
-        console.log(this.props.StepFinish())
+        this.props.StepFinish()
+        this.context.router.history.push('/');
     }
 
     render(){
@@ -29,6 +30,10 @@ class Step5 extends Component{
             </div>
         );
     }
+}
+
+Step5.contextTypes = {
+    router: PropTypes.object.isRequired
 }
 
 function mapDispatchToProps(dispatch) {

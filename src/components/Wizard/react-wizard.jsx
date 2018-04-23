@@ -108,8 +108,6 @@ class ReactWizard extends React.Component{
                 });
                 this.refreshAnimation(key);
         }
-        // console.log(this.props.StepOne(this.refs[this.props.steps[this.state.currentStep].stepName].isValidated()))
-        // console.log(this.props.WizSteps)
     }
     previousButtonClick(){
         var key = this.state.currentStep - 1;
@@ -198,7 +196,6 @@ class ReactWizard extends React.Component{
                                     })
                                 }
                             </Nav>
-                            {console.log(this.props.WizSteps)}
                             <div className="moving-tab" style={this.state.movingTabStyle}>{this.props.steps[this.state.currentStep].stepName}</div>
                         </div></CardHeader>):null}
                     <CardBody>

@@ -21,8 +21,8 @@ class Header extends Component {
 
     const userLinks = (
         <ul className="ml-auto navbar-nav">
-            <MenuItem content="Board" link="board" icon="design_bullet-list-67"  />
-            <MenuItem content="Profile" link="profile" icon="business_badge"  />
+            <MenuItem content="События" link="board" icon="design_bullet-list-67"  />
+            <MenuItem content="Профиль" link="profile" icon="business_badge"  />
             <li className="nav-item">
                 <a onClick={LogoutFunc} className="nav-link">
                     <i className="now-ui-icons sport_user-run"></i>

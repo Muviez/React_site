@@ -105,6 +105,9 @@ class ReminderEditor extends React.Component {
         return (
             <div className="card">
                 <div className="card-body card_content">
+                    <p className="card-title">
+                        Добавить событие
+                    </p>
                     <form>
                         <div className="input-group">
                             <span className="input-group-addon">
