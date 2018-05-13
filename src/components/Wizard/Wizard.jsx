@@ -32,7 +32,6 @@ class Wizard extends Component{
                             subtitle="Эта информация позволит нам узнать больше о вас."
                             headerTextCenter
                             nextButtonClasses="btn-success"
-                            finishButtonClasses=" "
                         />
                     </Col>
                 </div>

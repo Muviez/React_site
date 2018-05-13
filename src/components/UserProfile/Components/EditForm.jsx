@@ -45,6 +45,7 @@ class EditForm extends Component {
 
     SaveProfFunc = e => {
         this.props.SaveProfData(this.state.userProf);
+        console.log(this.props.SaveProfData(this.state.userProf))
         this.props.SaveProfile();
     }
     

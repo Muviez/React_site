@@ -4,14 +4,14 @@ export const AddCard = ({ title, reason, towhom, datetime, frequency, remindForW
     return {
         type: "ADD_REMINDER_CARD",
         id: nextId++,
-        title: title,
-        reason: reason,
-        towhom: towhom,
-        datetime: datetime,
-        frequency: frequency,
-        remindForWeek: remindForWeek,
-        remindForMonth: remindForMonth,
-        remindForThreeMonth: remindForThreeMonth
+        title,
+        reason,
+        towhom,
+        datetime,
+        frequency,
+        remindForWeek,
+        remindForMonth,
+        remindForThreeMonth
     }
 }
 
@@ -26,7 +26,7 @@ export const EditCard = ( id, { title, reason, towhom, datetime, frequency, remi
         frequency,
         remindForWeek,
         remindForMonth,
-        remindForThreeMonth,
+        remindForThreeMonth
 	};
 }
 

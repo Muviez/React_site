@@ -25,7 +25,7 @@ const User = (props) => {
                 <Col className="col-xl-7 col-lg-7 col-md-10 offset-md-0 col-sm-12 col-12 profile-menu">
                     <Card>
                         <CardHeader>
-                            {props.upProf && <h5 className="title">Edit Profile</h5>}
+                            {props.upProf && <h5 className="title">Изменить профиль</h5>}
                             {!props.upProf && <TabMenu />}
                         </CardHeader>
                         <CardBody>

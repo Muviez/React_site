@@ -242,21 +242,21 @@ class Card extends React.Component {
                         />
                         <div className="form-check">
                             <label className="form-check-label">
-                                <input name="remindForWeek" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" checked={this.props.remindForWeek} />
+                                <input name="remindForWeek" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" checked={this.state.ReminderInputs.remindForWeek} />
                                 <span className="form-check-sign"></span>
                                 <div>За неделю</div>
                             </label>
                         </div>
                         <div className="form-check">
                             <label className="form-check-label">
-                                <input name="remindForMonth" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" checked={this.props.remindForMonth} />
+                                <input name="remindForMonth" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" checked={this.state.ReminderInputs.remindForMonth} />
                                 <span className="form-check-sign"></span>
                                 <div>За месяц</div>
                             </label>
                         </div>
                         <div className="form-check">
                             <label className="form-check-label">
-                                <input name="remindForThreeMonth" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" checked={this.props.remindForThreeMonth} />
+                                <input name="remindForThreeMonth" onChange={(e) => this.changeCheckbox(e)} type="checkbox" className="form-check-input" value="on" checked={this.state.ReminderInputs.remindForThreeMonth} />
                                 <span className="form-check-sign"></span>
                                 <div>За 3 месяца</div>
                             </label>

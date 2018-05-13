@@ -14,7 +14,6 @@ class Step5 extends Component{
         this.props.StepFinish()
         this.context.router.history.push('/');
     }
-
     render(){
         return (
             <div className="wizard-step">
@@ -26,7 +25,6 @@ class Step5 extends Component{
                 <div className="wizard-finish-button">
                     <button onClick={this.finishOrder} className="btn btn-secondary close-button">Готово</button>
                 </div>
-                {/* <button className="btn-finish"></button> */}
             </div>
         );
     }
@@ -36,8 +34,15 @@ Step5.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
+function mapStateToProps(state){
+    return {
+        wizardStep: state.wizardStep
+    }
+};
+
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ StepFinish: Step_5 }, dispatch)
 };
 
-export default connect(null, mapDispatchToProps)(Step5);
+export default connect(mapStateToProps, mapDispatchToProps)(Step5);

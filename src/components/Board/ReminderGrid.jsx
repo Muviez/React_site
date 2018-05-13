@@ -25,7 +25,7 @@ class ReminderGrid extends React.Component {
 
         const defaultDisplay = () => {
             return(
-                    this.props.reminder.map(function(key, obj){
+                    this.props.reminder.map(function(key){
                         return (
                             <Card 
                                 key={key.id}

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {
     Row, Col
 } from 'reactstrap';
@@ -15,7 +14,6 @@ import { frequencyOfReminder, reasonSelect, whomSelect } from "../../arrays/sele
 class ReminderEditor extends React.Component {
     constructor() {
         super();
-
         this.state = {
             emptyInputError: "",
             ReminderInputs: {
@@ -29,7 +27,6 @@ class ReminderEditor extends React.Component {
                 remindForThreeMonth: false
             }
         }
-
     }
 
     AddCardFunc = () => {
